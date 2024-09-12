@@ -1,0 +1,373 @@
+{
+  "id": "3362570",
+  "name": "电科院-卫星大数据应用平台",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "29733005",
+      "name": "二氧化氮 ",
+      "font_class": "eryanghuadan",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    },
+    {
+      "icon_id": "29732998",
+      "name": "二氧化硫",
+      "font_class": "eryanghualiu",
+      "unicode": "e72e",
+      "unicode_decimal": 59182
+    },
+    {
+      "icon_id": "29732999",
+      "name": "一氧化碳",
+      "font_class": "yiyanghuatan",
+      "unicode": "e72f",
+      "unicode_decimal": 59183
+    },
+    {
+      "icon_id": "29733000",
+      "name": "臭氧",
+      "font_class": "chouyang",
+      "unicode": "e730",
+      "unicode_decimal": 59184
+    },
+    {
+      "icon_id": "29342818",
+      "name": "减",
+      "font_class": "jian",
+      "unicode": "e724",
+      "unicode_decimal": 59172
+    },
+    {
+      "icon_id": "29342819",
+      "name": "上一个",
+      "font_class": "shangyige",
+      "unicode": "e725",
+      "unicode_decimal": 59173
+    },
+    {
+      "icon_id": "29342820",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e726",
+      "unicode_decimal": 59174
+    },
+    {
+      "icon_id": "29342821",
+      "name": "图层",
+      "font_class": "tuceng",
+      "unicode": "e727",
+      "unicode_decimal": 59175
+    },
+    {
+      "icon_id": "29342822",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e728",
+      "unicode_decimal": 59176
+    },
+    {
+      "icon_id": "29342823",
+      "name": "下一个",
+      "font_class": "xiayige",
+      "unicode": "e729",
+      "unicode_decimal": 59177
+    },
+    {
+      "icon_id": "29342824",
+      "name": "定位",
+      "font_class": "dingwei",
+      "unicode": "e72a",
+      "unicode_decimal": 59178
+    },
+    {
+      "icon_id": "29342825",
+      "name": "暂停",
+      "font_class": "zanting",
+      "unicode": "e72b",
+      "unicode_decimal": 59179
+    },
+    {
+      "icon_id": "29342826",
+      "name": "日历",
+      "font_class": "rili",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "29342827",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e72d",
+      "unicode_decimal": 59181
+    },
+    {
+      "icon_id": "29342315",
+      "name": "风向",
+      "font_class": "fengxiang",
+      "unicode": "e6fe",
+      "unicode_decimal": 59134
+    },
+    {
+      "icon_id": "29342316",
+      "name": "城镇预报",
+      "font_class": "chengzhenyubao",
+      "unicode": "e6ff",
+      "unicode_decimal": 59135
+    },
+    {
+      "icon_id": "29342317",
+      "name": "道路气象",
+      "font_class": "daoluqixiang",
+      "unicode": "e700",
+      "unicode_decimal": 59136
+    },
+    {
+      "icon_id": "29342318",
+      "name": "PM10",
+      "font_class": "PM10",
+      "unicode": "e701",
+      "unicode_decimal": 59137
+    },
+    {
+      "icon_id": "29342319",
+      "name": "风速",
+      "font_class": "fengsu",
+      "unicode": "e702",
+      "unicode_decimal": 59138
+    },
+    {
+      "icon_id": "29342320",
+      "name": "PM2.5",
+      "font_class": "a-PM25",
+      "unicode": "e703",
+      "unicode_decimal": 59139
+    },
+    {
+      "icon_id": "29342321",
+      "name": "更多1",
+      "font_class": "gengduo1",
+      "unicode": "e704",
+      "unicode_decimal": 59140
+    },
+    {
+      "icon_id": "29342322",
+      "name": "高空实况",
+      "font_class": "gaokongshikuang",
+      "unicode": "e705",
+      "unicode_decimal": 59141
+    },
+    {
+      "icon_id": "29342323",
+      "name": "H8-真彩",
+      "font_class": "H8-zhencai",
+      "unicode": "e706",
+      "unicode_decimal": 59142
+    },
+    {
+      "icon_id": "29342324",
+      "name": "地面实况",
+      "font_class": "dimianshikuang",
+      "unicode": "e707",
+      "unicode_decimal": 59143
+    },
+    {
+      "icon_id": "29342325",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e708",
+      "unicode_decimal": 59144
+    },
+    {
+      "icon_id": "29342326",
+      "name": "风速",
+      "font_class": "fengxiangfengsu",
+      "unicode": "e709",
+      "unicode_decimal": 59145
+    },
+    {
+      "icon_id": "29342327",
+      "name": "空气监测",
+      "font_class": "kongqijiance",
+      "unicode": "e70a",
+      "unicode_decimal": 59146
+    },
+    {
+      "icon_id": "29342328",
+      "name": "空气预报",
+      "font_class": "kongqiyubao",
+      "unicode": "e70b",
+      "unicode_decimal": 59147
+    },
+    {
+      "icon_id": "29342329",
+      "name": "雷达回波",
+      "font_class": "leidahuibo",
+      "unicode": "e70c",
+      "unicode_decimal": 59148
+    },
+    {
+      "icon_id": "29342330",
+      "name": "能见度",
+      "font_class": "nengjiandu",
+      "unicode": "e70d",
+      "unicode_decimal": 59149
+    },
+    {
+      "icon_id": "29342331",
+      "name": "国内预警",
+      "font_class": "guoneiyujing",
+      "unicode": "e70e",
+      "unicode_decimal": 59150
+    },
+    {
+      "icon_id": "29342332",
+      "name": "水汽总量",
+      "font_class": "shuiqizongliang",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "29342333",
+      "name": "闪电定位",
+      "font_class": "shandiandingwei",
+      "unicode": "e710",
+      "unicode_decimal": 59152
+    },
+    {
+      "icon_id": "29342334",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e711",
+      "unicode_decimal": 59153
+    },
+    {
+      "icon_id": "29342335",
+      "name": "降水量",
+      "font_class": "jiangshuiliang",
+      "unicode": "e712",
+      "unicode_decimal": 59154
+    },
+    {
+      "icon_id": "29342336",
+      "name": "台风",
+      "font_class": "taifeng",
+      "unicode": "e713",
+      "unicode_decimal": 59155
+    },
+    {
+      "icon_id": "29342337",
+      "name": "云量",
+      "font_class": "yunliang",
+      "unicode": "e714",
+      "unicode_decimal": 59156
+    },
+    {
+      "icon_id": "29342338",
+      "name": "气温",
+      "font_class": "qiwen",
+      "unicode": "e715",
+      "unicode_decimal": 59157
+    },
+    {
+      "icon_id": "29342339",
+      "name": "后台监控",
+      "font_class": "houtaijiankong",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "29342340",
+      "name": "气压",
+      "font_class": "qiya",
+      "unicode": "e717",
+      "unicode_decimal": 59159
+    },
+    {
+      "icon_id": "29342341",
+      "name": "台风路径",
+      "font_class": "taifenglujing",
+      "unicode": "e718",
+      "unicode_decimal": 59160
+    },
+    {
+      "icon_id": "29342342",
+      "name": "空气质数",
+      "font_class": "kongqizhishu",
+      "unicode": "e719",
+      "unicode_decimal": 59161
+    },
+    {
+      "icon_id": "29342343",
+      "name": "GPS水汽",
+      "font_class": "GPSshuiqi",
+      "unicode": "e71a",
+      "unicode_decimal": 59162
+    },
+    {
+      "icon_id": "29342344",
+      "name": "相对湿度",
+      "font_class": "xiangduishidu",
+      "unicode": "e71b",
+      "unicode_decimal": 59163
+    },
+    {
+      "icon_id": "29342345",
+      "name": "预警信息",
+      "font_class": "yujingxinxi",
+      "unicode": "e71c",
+      "unicode_decimal": 59164
+    },
+    {
+      "icon_id": "29342346",
+      "name": "数据下载",
+      "font_class": "shujuxiazai",
+      "unicode": "e71d",
+      "unicode_decimal": 59165
+    },
+    {
+      "icon_id": "29342347",
+      "name": "数值预报",
+      "font_class": "shuzhiyubao",
+      "unicode": "e71e",
+      "unicode_decimal": 59166
+    },
+    {
+      "icon_id": "29342348",
+      "name": "卫星气象",
+      "font_class": "weixingqixiang",
+      "unicode": "e71f",
+      "unicode_decimal": 59167
+    },
+    {
+      "icon_id": "29342349",
+      "name": "综合显示",
+      "font_class": "zonghexianshi",
+      "unicode": "e720",
+      "unicode_decimal": 59168
+    },
+    {
+      "icon_id": "29342350",
+      "name": "AQI",
+      "font_class": "AQI",
+      "unicode": "e721",
+      "unicode_decimal": 59169
+    },
+    {
+      "icon_id": "29342351",
+      "name": "天气雷达",
+      "font_class": "tianqileida",
+      "unicode": "e722",
+      "unicode_decimal": 59170
+    },
+    {
+      "icon_id": "29342352",
+      "name": "位势高度",
+      "font_class": "weishigaodu",
+      "unicode": "e723",
+      "unicode_decimal": 59171
+    }
+  ]
+}
