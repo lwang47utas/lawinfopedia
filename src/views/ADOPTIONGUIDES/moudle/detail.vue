@@ -13,12 +13,12 @@
           <span>{{ detailData?.phone }}</span></div>
       </div>
       <div class="detail-concent" v-if="detailData.detaileAddress&&detailData.detaileAddress.length>0">
-        <h3>Contact & Map</h3>
+        <h3>{{$t('pro-Bono.contentTitle.Contact-Map')}}</h3>
         <svg-icon icon-class="address"></svg-icon>
         <span>{{ detailData?.detaileAddress[0] }}</span>
       </div>
       <div class="detail-concent" v-if="detailData.caseTypes&&detailData.caseTypes.length>0">
-        <h3>Case Types</h3>
+        <h3>{{$t('pro-Bono.contentTitle.Case-Types')}}</h3>
         <div>
           <ul>
             <li class="sle" v-for="(item,index) in detailData?.caseTypes" :key="index">{{ item }}</li>
@@ -26,12 +26,12 @@
         </div>
       </div>
       <div class="detail-concent" v-if="detailData.caseRestrictions">
-        <h3>Case Restrictions</h3>
+        <h3>{{$t('pro-Bono.contentTitle.Case-Restrictions')}}</h3>
         <svg-icon icon-class="address"></svg-icon>
         <span>{{ detailData?.caseRestrictions }}</span>
       </div>
       <div class="detail-concent" v-if="detailData.servicesProvided && detailData.servicesProvided.length>0">
-        <h3>Services Provided</h3>
+        <h3>{{$t('pro-Bono.contentTitle.Services-Provided')}}</h3>
         <div>
           <ul>
             <li class="sle" v-for="(item,index) in detailData?.servicesProvided" :key="index">{{ item }}</li>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="detail-concent" v-if="detailData.aboutThisOffice">
-        <h3>About This Office</h3>
+        <h3>{{$t('pro-Bono.contentTitle.About-This-Office')}}</h3>
         <div class="detail-concent-about">{{ detailData.aboutThisOffice ?? '--' }}</div>
       </div>
     </div>

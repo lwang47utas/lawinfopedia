@@ -5,8 +5,8 @@
 <!--    1222222-->
     <div>
       <div class="sidebar-intro">
-        <h2 class="sidebar-intro-q">What Are {{ $route.name }}?</h2>
-        <p class="sidebar-intro-a"> {{ introObj[$route.name] }}</p>
+        <h2 class="sidebar-intro-q">{{ $t(`pro-Bono.what.title`)  }} {{ $t(`breadcrumb.${$route.name}.title`)  }}?</h2>
+        <p class="sidebar-intro-a"> {{ $t(`breadcrumb.${$route.name}.intro`)  }}</p>
       </div>
       <message-aside :msg-list="msgList"></message-aside>
     </div>

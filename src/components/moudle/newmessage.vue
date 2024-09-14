@@ -38,26 +38,21 @@
               <!--                class="model"-->
               <!--              >{{modelList}}</span>-->
             </div>
-
-
           </div>
-
-
         </div>
         <div class="office-btn-list" v-if="concat">
           <div class="office-btn-details">
             <svg-icon icon-class="list"></svg-icon>
-            <span>Office Detail </span>
+            <span>{{$t('pro-Bono.tipTxt.list')}}</span>
           </div>
           <div class="office-btn-tel">
             <svg-icon icon-class="phone"></svg-icon>
-            <span>
-            Call Now </span>
+            <span>{{$t('pro-Bono.tipTxt.phone')}}</span>
           </div>
           <span
             class="seeMore"
             v-if="read"
-          > Read More</span>
+          >{{$t('pro-Bono.tipTxt.read')}}</span>
         </div>
       </li>
     </ul>

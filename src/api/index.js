@@ -14,7 +14,11 @@ export function random (params) {
 /**
  * 获取推荐文章
  */
-export function articleRandom (params) {
+export function articleRandom (data) {
+  const params = {
+    ...data,
+    language: localStorage.getItem('language') || 'es'
+  }
   return service({
     url: '/web/pet/getLawyerArticle',
     params,
@@ -25,8 +29,12 @@ export function articleRandom (params) {
  * 获取事务所所需类型
  */
 export function getType () {
+  const params = {
+    language: localStorage.getItem('language') || 'es'
+  }
   return service({
     url: '/web/pet/getLawyerType',
+    params,
     method: 'get'
   })
 }
@@ -63,7 +71,11 @@ export function petArticleType (params) {
 /**
  * 获取文章列表
  */
-export function getArticle (params) {
+export function getArticle (data) {
+  const params = {
+    ...data,
+    language: localStorage.getItem('language') || 'es'
+  }
   return service({
     url: '/web/pet/getLawyerArticle',
     params,
@@ -84,7 +96,11 @@ export function petArticle (params) {
 /**
  * 获取事务所详情
  */
-export function getLawyerInformation (params) {
+export function getLawyerInformation (data) {
+  const params = {
+    ...data,
+    language: localStorage.getItem('language') || 'es'
+  }
   return service({
     url: '/web/pet/getLawyerInformation',
     params,
@@ -101,5 +117,3 @@ export function getQuery (params) {
     method: 'get'
   })
 }
-
-

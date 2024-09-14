@@ -6,10 +6,10 @@
       LAWYERONCLOUD
     </div>
     <div class="main">
-      <a href="">About Us</a> |
-      <a href="">Contact Us </a> |
-      <a href=""> Privacy Policy</a> |
-      <a href="">Terms of Service</a>
+      <a href="">{{ $t('footer.link1') }}</a> |
+      <a href="">{{ $t('footer.link2') }} </a> |
+      <a href=""> {{ $t('footer.link3') }}</a> |
+      <a href="">{{ $t('footer.link4') }}</a>
     </div>
   </div>
 </template>

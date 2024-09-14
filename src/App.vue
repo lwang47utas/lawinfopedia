@@ -4,7 +4,13 @@
   </div>
 </template>
 
-
+<script>
+export default {
+  mounted () {
+    // this.$i18n.locale = 'es'
+  }
+}
+</script>
 
 <style lang="less">
 #app {

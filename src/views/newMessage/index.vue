@@ -7,11 +7,9 @@
           <message-aside :li-list="liList" :liChoose="this.$route.params.name" :msg-list="msgList" @liActive="liActive"></message-aside>
           <div class="new-con">
             <div class="new-con-lists">
-
-
             <features
               name=""
-              :title="this.$route.params.type.replace(/-/g, ' ')"
+              :title="$t(`breadcrumb.${this.$route.params.type.replace(/-/g, ' ')}.title`)"
               bottompx="40px"
             >
               <template v-slot:one>
@@ -24,7 +22,7 @@
               @current-change="handleCurrentChange"
               :current-page.sync="pageNo"
               :page-size="pageSize"
-              layout="total, pager"
+              layout="pager"
               :total="total">
             </el-pagination>
           </div>
@@ -125,7 +123,7 @@ export default {
         pageSize: this.pageSize
       }).then(res => {
         this.newMessageList.newsList = res.data.lawyerArticleTypeDTOList
-        this.total = res.data.count
+        // this.total = res.data.count
       })
     },
     handleCurrentChange (num) {

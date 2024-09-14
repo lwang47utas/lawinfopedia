@@ -33,31 +33,31 @@
           <img decoding="async" id="image" src="../../assets/image/index/banner-desktop.webp" alt="">
         </div>
         <div class="index-banner">
-          <div class="banner-title">{{ $t('index.header.headerTitle1') }} <span>{{ $t('index.header.headerTitle2') }}</span> {{ $t('index.header.headerTitle3') }}</div>
+          <div class="banner-title">{{ $t('header.headerTitle1') }} <span>{{ $t('index.header.headerTitle2') }}</span> {{ $t('index.header.headerTitle3') }}</div>
           <div class="banner-select">
             <el-input placeholder="search" v-model="searchValue">
             </el-input>
-            <div class="select-search" @click="searchFn(null)">{{ $t('index.header.search') }}</div>
+            <div class="select-search" @click="searchFn(null)">search</div>
           </div>
-          <div class="banner-label"><span>{{ $t('index.headerSearch.trending') }}:</span>
-            <div @click="searchFn('legal aid')">{{ $t('index.headerSearch.search1') }}</div>
-            <div @click="searchFn('accidental lawyer')">{{ $t('index.headerSearch.search2') }}</div>
-            <div @click="searchFn('get lawyer help')">{{ $t('index.headerSearch.search3') }}</div>
-            <div @click="searchFn('bankruptcy lawyer')">{{ $t('index.headerSearch.search4') }}</div>
+          <div class="banner-label"><span>Trending:</span>
+            <div @click="searchFn('legal aid')">legal aid</div>
+            <div @click="searchFn('accidental lawyer')">accidental lawyer</div>
+            <div @click="searchFn('get lawyer help')">get lawyer help</div>
+            <div @click="searchFn('bankruptcy lawyer')">bankruptcy lawyer</div>
           </div>
 
         </div>
         <div class="banner-number">
           <div v-for="(item,index) in allList.numList" :key="index">
             <div class="number-num">{{ item.num }}</div>
-            <div class="number-content">{{ $t(`index.number.number${index+1}`) }}</div>
+            <div class="number-content">{{ item.content }}</div>
           </div>
         </div>
 
       </div>
       <div class="index-moudle show-list">
-        <features :name="$t('index.legal-offices.intro')" url="/dog"
-                  :title="$t('index.legal-offices.title')">
+        <features name="Choose an office from the following categories to help you resolve legal problems." url="/dog"
+                  title="Legal Offices Nearby">
           <template v-slot:two>
             <ul class="index-moudle1 index-moudle-ul content-width grid-three">
 
@@ -66,7 +66,7 @@
                 :key="index"
                 class="curser-hover"
               >
-                <router-link :to="`/${item.categoryItemEn.replace(/\s+/g, '-')}`">
+                <router-link :to="`/${item.categoryItem.replace(/\s+/g, '-')}`">
                   <img :src="item.img" alt="">
                   <div>
                     <div class="newTitle mle">{{ item.categoryItem }}</div>
@@ -90,27 +90,27 @@
         </features>
       </div>
       <div class="index-moudle newMessage">
-        <features :name="$t('index.free.intro')" url="/news"
-                  :title="$t('index.free.title')">
+        <features name="Read the following articles for free legal suggestions and resources." url="/news"
+                  title="Free Legal Advice">
           <template v-slot:one>
             <ul class="choose-list  content-width ">
-              <router-link :to="{path:'/post/category/Pro-Bono-Services'}">
-                <li>{{$t('index.free.liList.li1') }}</li>
+              <router-link :to="{path:'/news',query:{type:'Pro Bono Services'}}">
+                <li> Pro Bono Services</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Unemployment-Benefits'}">
-                <li> {{$t('index.free.liList.li2') }}</li>
+              <router-link :to="{path:'/news',query:{type:'Unemployment Benefits'}}">
+                <li> Unemployment Benefits</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Free-Legal-Aid'}">
-                <li>{{$t('index.free.liList.li3') }}</li>
+              <router-link :to="{path:'/news',query:{type:'Free Legal Aid'}}">
+                <li> Free Legal Aid</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Retaining-a-Lawyer'}">
-                <li> {{$t('index.free.liList.li4') }}</li>
+              <router-link :to="{path:'/news',query:{type:'Retaining a Lawyer'}}">
+                <li> Retaining a Lawyer</li>
               </router-link>
-              <router-link :to="{path:'/post/category/ACLU'}">
-                <li>{{$t('index.free.liList.li5') }} </li>
+              <router-link :to="{path:'/news',query:{type:'ACLU'}}">
+                <li> ACLU</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Types-of-Lawyers'}">
-                <li>{{$t('index.free.liList.li6') }} </li>
+              <router-link :to="{path:'/news',query:{type:'Types of Lawyers'}}">
+                <li> Types of Lawyers</li>
               </router-link>
             </ul>
           </template>
@@ -131,16 +131,18 @@
                   </div>
                 </div>
               </router-link>
+
             </ul>
           </template>
+
         </features>
-        <router-link to="/post/category/ALL" tag="div" class="newMessage-more"> {{$t('index.free.moreButton') }}</router-link>
+        <router-link to="/news" tag="div" class="newMessage-more">More legal advices</router-link>
       </div>
       <div class="index-moudle friend">
         <features
-          :name="$t('index.about.intro')"
+          name="A legal directory focusing on providing free legal information."
           url=""
-          :title="$t('index.about.title')"
+          title="AboutLawinfopedia？"
         >
           <template v-slot:one>
             <ul class=" index-moudle-ul content-width grid-three">
@@ -155,8 +157,8 @@
                     alt=""
                   >
                 </div>
-                <div class="frind_name">{{ $t(`index.about.about${index+1}.name`) }}</div>
-                <div class="friend_title">{{ $t(`index.about.about${index+1}.intro`) }}</div>
+                <div class="frind_name">{{ item.name }}</div>
+                <div class="friend_title">{{ item.title }}</div>
 
               </li>
             </ul>
@@ -892,11 +894,7 @@ export default {
       border-radius: 20px;
     }
   }
-.newMessage{
-  .grid-three {
-    grid-gap: 10px 10px !important;
-  }
-}
+
   .el-input {
     width: 740px;
     height: 68px;
@@ -905,6 +903,8 @@ export default {
     background-color: #ffffff;
     margin-bottom: 30px;
   }
+
+
   .el-input__inner {
     border: 0px;
     font-size: 18px;

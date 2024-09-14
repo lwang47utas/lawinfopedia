@@ -64,8 +64,11 @@ export function getHospitalArea (params) {
 /**
  * 详细信息
  */
-export function getInformation (params) {
-
+export function getInformation (data) {
+  const params = {
+    ...data,
+    language: localStorage.getItem('language') || 'es'
+  }
   return service({
     url: '/web/pet/getLawyerInformation',
     params,

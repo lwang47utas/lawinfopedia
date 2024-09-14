@@ -6,7 +6,7 @@
         <div class="aside-tool-con">
           <router-link to="/Pro-Bono-Offices">
             <div class="aside-tool-item">
-              <span class="tool-text">Pro Bono & Offices</span>
+              <span class="tool-text"> {{$t('menu.menu0.title')}}</span>
 
             </div>
           </router-link>
@@ -16,27 +16,27 @@
           <router-link to="/news">
             <div class="aside-tool-item">
               <span class="tool-text">
-                Free Legal Advice</span>
+               {{$t('menu.menu1.title')}} </span>
             </div>
           </router-link>
         </div>
       </div>
     </div>
     <div class="aside-filter aside-div" v-if="liList">
-      <h1>Filter By</h1>
+      <h1>{{ $t('aside.filter') }}</h1>
       <ul class="filter-box-options" style="display: block;">
         <li @click="liActive({label:'ALL'})" :class="$route.params.type.replace(/-/g, ' ')  === 'ALL'?'active' : '' "><span>All</span></li>
         <li v-for="(item,index) in liList" :key="index" @click="liActive(item)"
             :class="$route.params.type.replace(/-/g, ' ') === item.label?'active':'' ">
-          <span>{{ item.label }}{{ item?.count }}</span>
+          <span>{{$t(`breadcrumb.${item.label}.title`)}} {{ item?.count }}</span>
           <!--                <a href="?category_filter=all-about-foster-care&amp;term=">{{ item.name }}({{ item.num }})</a>-->
           <span></span>
         </li>
       </ul>
     </div>
     <div class="aside-select aside-div" v-if="selectObj">
-      <h1>Filter By</h1>
-      <div v-for="(item,key) in selectObj" class="selectObj-list">
+      <h1>{{$t('aside.filter')}}</h1>
+      <div v-for="(item,key) in selectObj" :key="key" class="selectObj-list">
         <h3>
           {{ key }}
         </h3>
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="aside-msg aside-div" v-if="msgList">
-      <h1>Free Legal Advice </h1>
+      <h1>{{$t('aside.msg')}} </h1>
       <div class="aside-msg-con" v-for="(item,index) in msgList" :key="index" @click="msgClick(item)">
         <div class="aside-msg-item">
           <img :src="item.img" alt="">
@@ -81,7 +81,7 @@
       </div>
     </div>
     <div class="aside-msg aside-div" v-if="petList">
-      <h1>Free Legal Advice</h1>
+      <h1>{{$t('aside.msg')}}</h1>
       <div class="aside-msg-con" v-for="(item,index) in petList" :key="index" @click="petClick(item)">
         <div class="aside-msg-item">
           <img :src="item.img" alt="">
@@ -128,12 +128,9 @@ export default {
       this.selectComObj[this.selectType] = item
 
       this.$router.push({
-        // name: 'newsContent',
         path: `/${this.$route.name}`,
         query: { obj: JSON.stringify(this.selectComObj) }
       })
-      // this.$emit('selectChange', this.selectComObj)
-      // console.log(this.selectComObj,this.selectComObj[this.selectType])
     },
     selectClick (key) {
       this.selectType = key

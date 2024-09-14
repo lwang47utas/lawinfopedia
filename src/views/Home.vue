@@ -79,11 +79,7 @@ export default {
           path: '/post/category',
           name: 'Free Legal Advice',
           children: [
-            {
-              title: 'ALL',
-              path: '/post/category/ALL',
-              name: 'ALL'
-            },
+
             {
               title: 'Pro Bono Services',
               path: '/post/category/Pro-Bono-Services',

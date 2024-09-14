@@ -12,21 +12,22 @@
             <span :style="{ color: popclass === 'index' ? '#fff' : '#333'}">LAWYERONCLOUD</span>
           </router-link>
         </div>
-       <!--  移动端      -->
+        <!--  移动端      -->
         <div class="hearder-svg">
           <el-dropdown>
            <span class="el-dropdown-link">
-              <svg-icon class-name="hearderIcon" :icon-class="popclass === 'index' ? 'list-white' : 'list-black'"></svg-icon>
+              <svg-icon class-name="hearderIcon"
+                        :icon-class="popclass === 'index' ? 'list-white' : 'list-black'"></svg-icon>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item v-for="(item, index) in menus" :key="index" divided>
 
-                {{ item.name }}
+                {{ $t(`menu.menu${index}.title`) }}
                 <li v-for="(e, i) in item.children" :key="i">
                   <router-link active-class="active" :to="e.path" class="rout"
                                @click.native="setPopClass(item)">
 
-                    <span>{{ e.title }}</span>
+                    <span>{{ $t(`menu.menu${index}.list${i}`)}}</span>
                   </router-link>
                 </li>
 
@@ -42,7 +43,7 @@
               :style="{ color: popclass === 'index' ? '#fff' : '#333' }"
             >
               <span class="el-dropdown-link">
-                {{ item.name }}<i class="el-icon-arrow-down el-icon--right"></i>
+                 {{ $t(`menu.menu${index}.title`) }}<i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown"
 
@@ -51,13 +52,23 @@
                   <router-link active-class="active" :to="e.path" class="rout"
                                @click.native="setPopClass(e)">
 
-                    <span>{{ e.title }}</span>
+                    <span>{{$t(`menu.menu${index}.list${i}`)}}</span>
                   </router-link>
                 </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </li>
         </ul>
+        <el-select v-model="langValue" @change="langChange" placeholder="请选择">
+          <el-option
+            label="Español"
+            value="es">
+          </el-option>
+          <el-option
+            label="English"
+            value="en">
+          </el-option>
+        </el-select>
       </div>
 
       <!--      <div-->
@@ -89,10 +100,17 @@ export default {
   props: ['logo', 'menus', 'isBellAlert', 'radarStateAlert'],
   data () {
     return {
-      popclass: localStorage.getItem('changeRoute')
+      popclass: localStorage.getItem('changeRoute'),
+      langValue: localStorage.getItem('language') || 'es'
     }
   },
   methods: {
+    // 切换语言
+    langChange () {
+      localStorage.setItem('language', this.langValue)
+      this.$i18n.locale = this.langValue
+      this.$router.go({ path: this.$route.fullPath })
+    },
     setPopClass (item) {
       this.popclass = item.path
       if (item.path === '/index') {
@@ -194,10 +212,11 @@ export default {
         color: #fff;
         font-weight: bold;
       }
-      @media screen and (max-width: 800px){
-       a{
-         font-size: 26px;
-       }
+
+      @media screen and (max-width: 800px) {
+        a {
+          font-size: 26px;
+        }
       }
     }
 
@@ -276,18 +295,34 @@ export default {
 }
 </style>
 <style lang="less">
-.el-dropdown {
-  font-size: 18px;
-}
-.el-dropdown-menu {
-  font-size: 20px !important;
 
-  .el-dropdown-menu__item {
-    a {
-      text-decoration: none;
-      color: var(--txt_color) !important;
+.main{
+  .el-dropdown {
+    font-size: 18px;
+  }
+
+  .el-dropdown-menu {
+    font-size: 20px !important;
+
+    .el-dropdown-menu__item {
+      a {
+        text-decoration: none;
+        color: var(--txt_color) !important;
+      }
+    }
+  }
+  .el-select {
+    width: 100px !important;
+  }
+  @media screen and (max-width: 800px){
+    .el-select {
+      width: 70px !important;
+    }
+
+    .el-input--suffix .el-input__inner {
+      padding-right: 20px;
+      padding:0 5px;
     }
   }
 }
-
 </style>
