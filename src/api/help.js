@@ -67,7 +67,7 @@ export function getHospitalArea (params) {
 export function getInformation (data) {
   const params = {
     ...data,
-    language: localStorage.getItem('language') || 'es'
+    language: localStorage.getItem('lawLanguage') || 'en'
   }
   return service({
     url: '/web/pet/getLawyerInformation',

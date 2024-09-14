@@ -9,7 +9,7 @@ Vue.use(VueI18n)
 // 从localStorage获取语言选择。
 const i18n = new VueI18n({
   silentTranslationWarn: true,
-  locale: localStorage.getItem('language') || 'es', // 初始未选择默认
+  locale: localStorage.getItem('denLanguage') || 'en', // 初始未选择默认
   messages: {
     es,
     en

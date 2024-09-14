@@ -17,7 +17,7 @@ export function random (params) {
 export function articleRandom (data) {
   const params = {
     ...data,
-    language: localStorage.getItem('language') || 'es'
+    language: localStorage.getItem('lawLanguage') || 'en'
   }
   return service({
     url: '/web/pet/getLawyerArticle',
@@ -30,7 +30,7 @@ export function articleRandom (data) {
  */
 export function getType () {
   const params = {
-    language: localStorage.getItem('language') || 'es'
+    language: localStorage.getItem('lawLanguage') || 'en'
   }
   return service({
     url: '/web/pet/getLawyerType',
@@ -74,7 +74,7 @@ export function petArticleType (params) {
 export function getArticle (data) {
   const params = {
     ...data,
-    language: localStorage.getItem('language') || 'es'
+    language: localStorage.getItem('lawLanguage') || 'en'
   }
   return service({
     url: '/web/pet/getLawyerArticle',
@@ -99,7 +99,7 @@ export function petArticle (params) {
 export function getLawyerInformation (data) {
   const params = {
     ...data,
-    language: localStorage.getItem('language') || 'es'
+    language: localStorage.getItem('lawLanguage') || 'en'
   }
   return service({
     url: '/web/pet/getLawyerInformation',

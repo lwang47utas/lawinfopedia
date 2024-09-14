@@ -32,7 +32,6 @@
         </div>
       </div>
       <div v-if="!$route.params.oid && $route.params.area">
-
         <information :informationList="informationList"></information>
       </div>
       <div v-if="$route.params.oid">
@@ -90,7 +89,6 @@
         </div>
       </section>
     </div>
-
   </div>
 </template>
 <script>
@@ -126,8 +124,10 @@ export default {
   methods: {
     init () {
       this.title = this.$route.name
+      // 不带-展示使用
       this.state = this.$route.params.state ? this.$route.params.state.replace(/-/g, ' ') : null
       this.area = this.$route.params.area ? this.$route.params.area.replace(/-/g, ' ') : null
+      // 带-传参使用
       this.routeState = this.$route.params.state
       this.routeState == null ? this.getStateFn() : this.$route.params.area ? this.getInformationFn() : this.getAreaFn()
     },

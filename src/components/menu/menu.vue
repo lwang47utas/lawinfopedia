@@ -101,13 +101,13 @@ export default {
   data () {
     return {
       popclass: localStorage.getItem('changeRoute'),
-      langValue: localStorage.getItem('language') || 'es'
+      langValue: localStorage.getItem('denLanguage') || 'en'
     }
   },
   methods: {
     // 切换语言
     langChange () {
-      localStorage.setItem('language', this.langValue)
+      localStorage.setItem('denLanguage', this.langValue)
       this.$i18n.locale = this.langValue
       this.$router.go({ path: this.$route.fullPath })
     },
