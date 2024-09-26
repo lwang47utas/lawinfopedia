@@ -34,11 +34,11 @@ export default {
     }
   },
   mounted () {
+    console.log(21212)
     this.getLegalIssuesAndStatesFn()
   },
   watch: {
     type (newVal, old) {
-      console.log(newVal)
       this.getLegalIssuesAndStatesFn()
     }
   },
@@ -50,7 +50,7 @@ export default {
         legalIssues: this.$route.name === 'states' ? this.type : this.$route.params.issue,
         states: this.$route.name === 'states' ? this.$route.params.issue : this.type
       }).then(res => {
-        console.log(res)
+        // console.log(res)
         this.qaList = res.data.lawyerArticleTypeDTOList
         this.total = res.data.count
       })
@@ -61,6 +61,7 @@ export default {
       // this.getPetList(this.isSelectObj)
     },
     readFn (item) {
+      console.log(item)
       this.$emit('readFn', item)
     }
   }

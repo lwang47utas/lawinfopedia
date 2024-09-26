@@ -27,15 +27,12 @@
         </div>
       </div>
 
-
     </div>
-
 
   </div>
 </template>
 
 <script>
-
 
 import { getIdPetArticle } from '@/api/qa.js'
 
@@ -64,14 +61,12 @@ export default {
     }
   },
   async mounted () {
-    // this.newsId = this.$route.params.id
-    // if (this.newsId)
-      this.getPetArticleFn()
+    this.newsId = this.$route.params.id
+    this.getPetArticleFn()
   },
   methods: {
     getPetArticleFn () {
-
-      getIdPetArticle({ id: localStorage.getItem('layId') }
+      getIdPetArticle({ id: this.$route.params.id, type: 'lawyer' }
       ).then(res => {
         // console.log(res)
         this.newMessage = res.data
@@ -277,7 +272,6 @@ export default {
     }
   }
 }
-
 
 </style>
 <style lang="less">

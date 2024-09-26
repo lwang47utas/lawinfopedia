@@ -25,4 +25,8 @@
         <loc>https://lawyeroncloud.com/la_list_sitemap.xml</loc>
         <lastmod>2024-09-01</lastmod>
     </url>
+    <url>
+        <loc>https://lawyeroncloud.com/la_article1_sitemap.xml</loc>
+        <lastmod>2024-09-01</lastmod>
+    </url>
 </urlset>

@@ -185,8 +185,8 @@ export default {
     },
     // 阅读文章
     readFn (item) {
-      localStorage.setItem('layId',item.id)
-      this.$router.push({ path: `/answers/${this.isTypeObj.type}/${this.$route.params.issue}/${item.uid}` })
+      console.log(`/answers/${this.isTypeObj.type}/${this.$route.params.issue}/${item.uid}`)
+      this.$router.push({ path: `/answers/${this.isTypeObj.type}/${this.$route.params.issue}/${encodeURI(item.uid)}` })
     }
 
   }

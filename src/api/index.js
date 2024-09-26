@@ -110,7 +110,8 @@ export function getLawyerInformation (data) {
 /**
  * 搜索
  */
-export function getQuery (params) {
+export function getQuery (data) {
+  const params = { language: localStorage.getItem('lawLanguage') || 'en', ...data }
   return service({
     url: '/web/pet/getQuery',
     params,

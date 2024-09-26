@@ -2,25 +2,30 @@
   <div id="search">
     <message-aside :msg-list="msgList"></message-aside>
     <div class="search-box">
+      <div class="search-title">Search results for "{{ $route.query.msg }}"</div>
       <div class="search-list" v-for="item in queryList" :key="item.oid" @click="searchListFn(item)">
-        <div class="search-name">{{ item.name }}</div>
-        <div class="search-about mle">{{ item.aboutThisOffice }}</div>
-        <div class="search-address">{{ item.address }}</div>
+        <img :src="item.img" alt="">
+        <div>
+          <div class="search-name">{{ item.title }}</div>
+          <div class="search-about mle">{{ item.overview }}</div>
+        </div>
+
+<!--        <div class="search-address">{{ item.address }}</div>-->
       </div>
-      <el-pagination
-        background
-        @current-change="handleCurrentChange"
-        :current-page.sync="pageNo"
-        :page-size="pageSize"
-        layout="pager"
-        :total="total">
-      </el-pagination>
+<!--      <el-pagination-->
+<!--        background-->
+<!--        @current-change="handleCurrentChange"-->
+<!--        :current-page.sync="pageNo"-->
+<!--        :page-size="pageSize"-->
+<!--        layout="pager"-->
+<!--        :total="total">-->
+<!--      </el-pagination>-->
     </div>
   </div>
 </template>
 
 <script>
-import { getQuery } from '@/api/index'
+import { getLegalIssuesAndStates } from '@/api/qa.js'
 import { getPetArticleList } from '@/libs/utils'
 
 export default {
@@ -30,30 +35,27 @@ export default {
       pageNo: 1,
       pageSize: 20,
       total: 0,
+      msgList:[]
     }
   },
   async mounted () {
     this.msgList = await getPetArticleList()
-    getQuery({
-      msg:
-      this.$route.query.msg,
+    getLegalIssuesAndStates({
       pageNo: this.pageNo,
-      pageSize: this.pageSize
+      pageSize: this.pageSize,
+      legalIssues: this.$route.query.msg
     }).then(res => {
-      this.queryList = res.data.list
-      this.total = res.data.total
+      this.queryList = res.data.lawyerArticleTypeDTOList
+      this.total = res.data.count
     })
+
   },
   methods: {
-    handleCurrentChange () {
-
-    },
+    handleCurrentChange(){},
     searchListFn (item) {
-      console.log(item)
-      const type = item.categoryItem.replace(/\s+/g, '-')
-      const area = item.area === '' ? 'county' : item.area
       this.$router.push({
-        path: '/' + type + '/' + item.state + '/' + area + '/' + item.ly,
+        path: '/answers/legal-issue/'+item.label[0]+'/'+item.uid,
+        query: { oid: item.oid }
       })
     }
   }
@@ -72,13 +74,23 @@ export default {
 
   .search-box {
     max-width: 800px;
+    .search-title{
+      font-size: 26px;
+      text-align: left;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
   }
 
   .search-list {
+    display: flex;
     text-align: left;
     padding: 12px 0;
     cursor: pointer;
-
+    img{
+      width: 120px;
+      margin-right: 20px;
+    }
     .search-name {
       line-height: 26px;
       padding: 2px 0;

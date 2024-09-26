@@ -17,7 +17,7 @@ export default {
     return {
       logo: {
         path: '/index',
-        img: '@/assets/logo.png',
+        img: '@/assets/logo.png'
       },
       menus: [
         {
@@ -94,43 +94,43 @@ export default {
               title: 'Free Legal Aid',
               path: '/post/category/Free-Legal-Aid',
               name: 'Free Legal Aid'
-            },{
+            }, {
               title: 'Retaining a Lawyer',
               path: '/post/category/Retaining-a-Lawyer',
               name: 'Retaining a Lawyer'
-            },{
+            }, {
               title: 'ACLU',
               path: '/post/category/ACLU',
               name: 'ACLU'
-            },{
+            }, {
               title: 'Types of Lawyers',
               path: '/post/category/Types-of-Lawyers',
               name: 'Types of Lawyers'
-            },
+            }
           ]
         },
-        {
-          path: '/answers',
-          name: 'Legal Q & A',
-          children: [
-            {
-              title: 'Answers by legal issue',
-              path: '/answers/legal-issue',
-              name: 'Answers by legal issue'
-            },
-            {
-              title: 'Answers by state',
-              path: '/answers/state',
-              name: 'Answers by state'
-            }
-            // {
-            //   title: 'Answers list',
-            //   path: '/answers/list',
-            //   name: 'Answers list'
-            // }
-          ]
-        }
- ]
+        // {
+        //   path: '/answers',
+        //   name: 'Legal Q & A'
+        //   // children: [
+        //   //   {
+        //   //     title: 'Answers by legal issue',
+        //   //     path: '/answers/legal-issue',
+        //   //     name: 'Answers by legal issue'
+        //   //   },
+        //   //   {
+        //   //     title: 'Answers by state',
+        //   //     path: '/answers/state',
+        //   //     name: 'Answers by state'
+        //   //   }
+        //   //   // {
+        //   //   //   title: 'Answers list',
+        //   //   //   path: '/answers/list',
+        //   //   //   name: 'Answers list'
+        //   //   // }
+        //   // ]
+        // }
+      ]
     }
   },
   mounted () {

@@ -33,7 +33,10 @@
           <img decoding="async" id="image" src="../../assets/image/index/banner-desktop.webp" alt="">
         </div>
         <div class="index-banner">
-          <div class="banner-title">{{ $t('index.header.headerTitle1') }} <span>{{ $t('index.header.headerTitle2') }}</span> {{ $t('index.header.headerTitle3') }}</div>
+          <div class="banner-title">{{ $t('index.header.headerTitle1') }} <span>{{
+              $t('index.header.headerTitle2')
+            }}</span> {{ $t('index.header.headerTitle3') }}
+          </div>
           <div class="banner-select">
             <el-input placeholder="search" v-model="searchValue">
             </el-input>
@@ -50,7 +53,7 @@
         <div class="banner-number">
           <div v-for="(item,index) in allList.numList" :key="index">
             <div class="number-num">{{ item.num }}</div>
-            <div class="number-content">{{ $t(`index.number.number${index+1}`) }}</div>
+            <div class="number-content">{{ $t(`index.number.number${index + 1}`) }}</div>
           </div>
         </div>
 
@@ -79,12 +82,12 @@
                 </router-link>
               </li>
 
-<!--              <li class="curser-hover toMore">-->
-<!--                <RouterLink to="/Pro-Bono-Offices">-->
-<!--                  <div class="module1-title">Learn More</div>-->
-<!--                  <svg-icon icon-class="right"></svg-icon>-->
-<!--                </RouterLink>-->
-<!--              </li>-->
+              <!--              <li class="curser-hover toMore">-->
+              <!--                <RouterLink to="/Pro-Bono-Offices">-->
+              <!--                  <div class="module1-title">Learn More</div>-->
+              <!--                  <svg-icon icon-class="right"></svg-icon>-->
+              <!--                </RouterLink>-->
+              <!--              </li>-->
             </ul>
           </template>
         </features>
@@ -95,29 +98,30 @@
           <template v-slot:one>
             <ul class="choose-list  content-width ">
               <router-link :to="{path:'/post/category/Pro-Bono-Services'}">
-                <li>{{$t('index.free.liList.li1') }}</li>
+                <li>{{ $t('index.free.liList.li1') }}</li>
               </router-link>
               <router-link :to="{path:'/post/category/Unemployment-Benefits'}">
-                <li> {{$t('index.free.liList.li2') }}</li>
+                <li> {{ $t('index.free.liList.li2') }}</li>
               </router-link>
               <router-link :to="{path:'/post/category/Free-Legal-Aid'}">
-                <li>{{$t('index.free.liList.li3') }}</li>
+                <li>{{ $t('index.free.liList.li3') }}</li>
               </router-link>
               <router-link :to="{path:'/post/category/Retaining-a-Lawyer'}">
-                <li> {{$t('index.free.liList.li4') }}</li>
+                <li> {{ $t('index.free.liList.li4') }}</li>
               </router-link>
               <router-link :to="{path:'/post/category/ACLU'}">
-                <li>{{$t('index.free.liList.li5') }} </li>
+                <li>{{ $t('index.free.liList.li5') }}</li>
               </router-link>
               <router-link :to="{path:'/post/category/Types-of-Lawyers'}">
-                <li>{{$t('index.free.liList.li6') }} </li>
+                <li>{{ $t('index.free.liList.li6') }}</li>
               </router-link>
             </ul>
           </template>
           <template v-slot:two>
             <ul class="message index-moudle-ul content-width grid-three">
 
-              <router-link v-for="(item, index) in allList.messageList.newsList" tag="li" :key="index" :to="`/news/content/${item.uid}`">
+              <router-link v-for="(item, index) in allList.messageList.newsList" tag="li" :key="index"
+                           :to="`/news/content/${item.uid}`">
                 <img :src=" item.img" alt="">
                 <div>
                   <div class="newTitle mle">{{ item.title }}</div>
@@ -134,7 +138,10 @@
             </ul>
           </template>
         </features>
-        <router-link to="/post/category/ALL" tag="div" class="newMessage-more"> {{$t('index.free.moreButton') }}</router-link>
+        <router-link to="/post/category/ALL" tag="div" class="newMessage-more"> {{
+            $t('index.free.moreButton')
+          }}
+        </router-link>
       </div>
       <div class="index-moudle friend">
         <features
@@ -155,12 +162,82 @@
                     alt=""
                   >
                 </div>
-                <div class="frind_name">{{ $t(`index.about.about${index+1}.name`) }}</div>
-                <div class="friend_title">{{ $t(`index.about.about${index+1}.intro`) }}</div>
+                <div class="frind_name">{{ $t(`index.about.about${index + 1}.name`) }}</div>
+                <div class="friend_title">{{ $t(`index.about.about${index + 1}.intro`) }}</div>
 
               </li>
             </ul>
           </template>
+        </features>
+
+      </div>
+      <div class="index-moudle qa">
+        <features
+          name="Get answers from experienced lawyers"
+          url=""
+          title="Legal Q & A"
+
+        >
+          <div class="qa-list">
+            <div class="qa-item index-moudle-ul content-width">
+              <div class="qa-con">
+                <div class="qa-title">Recently answered</div>
+                <ul class="">
+                  <li v-for="(item,index) in qaList.recentlyAnswered" :key="index">
+                    <img :src="item.img" alt="">
+                    <div class="item-con">
+                      <div class="item-con-title mle" @click="qaClick(item) "> {{ item.title }}</div>
+                      <div class="item-con-overview sle">{{ item.overview }}</div>
+                    </div>
+                    <!--                <img :src="item.img" alt="">-->
+                  </li>
+                </ul>
+              </div>
+              <div class="qa-con">
+                <div class="qa-title"> Common questions</div>
+                <ul class="">
+                  <li v-for="(item,index) in qaList.commonQuestions" :key="index">
+                    <img :src="item.img" alt="">
+                    <div class="item-con">
+                      <div class="item-con-title mle" @click="qaClick(item) "> {{ item.title }}</div>
+                      <div class="item-con-overview sle">{{ item.overview }}</div>
+                    </div>
+
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          <div class="qa-select">
+            <div class="qa-select-con">
+
+            <div class="qa-select-title">
+              Find information about your legal issue
+
+            </div>
+            <div class="qa-select-enter">Enter your legal issue here</div>
+            <div class="qa-select-item">
+<!--              <el-select-->
+<!--                v-model="qaValue"-->
+<!--                filterable-->
+<!--                placeholder="legal issue"-->
+<!--                no-match-text=" "-->
+<!--              >-->
+<!--                <el-option-->
+<!--                  v-for="item in qaOptions"-->
+<!--                  :key="item.value"-->
+<!--                  :label="item.label"-->
+<!--                  :value="item.value">-->
+<!--                </el-option>-->
+<!--              </el-select>-->
+              <el-input v-model="qaValue" placeholder="请输入内容"></el-input>
+              <div class="select-search" @click="searchQaFn()">{{ $t('index.header.search') }}</div>
+            </div>
+            </div>
+          </div>
+
+          </div>
+
         </features>
 
       </div>
@@ -173,10 +250,10 @@
 import { allList } from './js/index.js'
 
 import features from '../../components/features/features.vue'
-// import Shu from '../../components/moudle/shu.vue'
 import FooterCom from '../../components/footerCom/footerCom.vue'
 
 import { articleRandom, getType } from '@/api/index'
+import { getRC } from '@/api/qa'
 
 export default {
   components: {
@@ -205,9 +282,25 @@ export default {
           label: 'cat'
         }
       ],
-
       searchList: {},
-      searchValue: ''
+      searchValue: '',
+      qaList: {}, // 问答列表
+      qaValue: '', // 问答列表
+      qaOptions: [{
+        value: 'Business Litigation',
+        label: 'Business Litigation'
+      }, {
+        value: 'Criminal Law',
+        label: 'Criminal Law'
+      }, {
+        value: 'Custody & Visitation',
+        label: 'Custody & Visitation'
+      }, {
+        value: 'Divorce',
+        label: 'Divorce'
+      }
+
+      ]
     }
   },
   watch: {
@@ -220,6 +313,7 @@ export default {
     this.versionUrl = this.$route.name
     this.randomFn()
     this.getTypeList()
+    this.getRCFn()
   },
   methods: {
     getImg () {
@@ -267,7 +361,7 @@ export default {
         this.allList.produceList = res.data
       })
     },
-    // 推荐猫狗文章
+    // 推荐文章
     randomFn () {
       articleRandom({ type: 1 }).then(res => {
         this.allList.messageList.newsList = res.data.lawyerArticleTypeDTOList
@@ -284,13 +378,26 @@ export default {
     // 点击搜索
     searchFn (item) {
       // console.log(item)
-      this.searchValue = item ? item : this.searchValue
+      this.searchValue = item || this.searchValue
       this.$router.push({
         // name: 'newsContent',
         path: '/search',
         query: { msg: this.searchValue }
       })
+    },
+    // 搜索问答
+    searchQaFn () {
+      this.$router.push({ path: '/qaSearch', query: { msg: this.qaValue } })
+    },
+    getRCFn (item) {
+      getRC().then(res => {
+        this.qaList = res.data
+      })
+    },
+    qaClick (item) {
+      this.$router.push({ path: '/answers/legal-issue/' + item.label[0] + '/' + item.uid })
     }
+
   },
 
   provide () {
@@ -319,6 +426,7 @@ export default {
     .vedio {
       position: relative;
       width: 100%;
+
       img {
         position: relative;
         width: 100%;
@@ -367,25 +475,11 @@ export default {
         .banner-select {
           position: relative;
         }
-
         .select-search {
           position: absolute;
           top: 15px;
           right: 20px;
-          font-size: 18px;
-          background-color: var(--theme_color);
-          color: #ffffff;
-          vertical-align: middle;
-          display: table-cell;
-          border: 0px solid #DCDFE6;
-          border-radius: 26px;
-          padding: 8px 20px;
-
-          white-space: nowrap;
-
-          &:hover {
-            cursor: pointer;
-          }
+//font-size: 14px;
         }
 
         .banner-label {
@@ -467,7 +561,6 @@ export default {
             margin-bottom: 30px;
           }
 
-
           .banner-label {
             display: flex;
             flex-wrap: wrap;
@@ -535,7 +628,6 @@ export default {
             color: #FFFFFF;
             line-height: 21px;
 
-
             span {
               margin-right: 6px;
 
@@ -560,7 +652,23 @@ export default {
 
       }
     }
+    .select-search {
 
+      font-size: 18px;
+      background-color: var(--theme_color);
+      color: #ffffff;
+      vertical-align: middle;
+      display: table-cell;
+      border: 0px solid #DCDFE6;
+      border-radius: 26px;
+      padding: 8px 20px;
+
+      white-space: nowrap;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
     .search-middleBox {
       margin-top: -40px;
       width: 100%;
@@ -612,7 +720,6 @@ export default {
 
       .index-moudle-ul {
         width: 100%;
-
         li {
           display: flex;
           width: 100%;
@@ -750,6 +857,7 @@ export default {
 
     .newMessage {
       background-color: #f3f5f7;
+
       .choose-list {
         max-width: 1085px;
         display: flex;
@@ -776,6 +884,7 @@ export default {
         }
 
       }
+
       .message {
         li {
           align-items: flex-start;
@@ -833,6 +942,7 @@ export default {
           }
         }
       }
+
       .newMessage-more {
         width: 448px;
         height: 70px;
@@ -881,33 +991,127 @@ export default {
         }
       }
     }
+
+    .qa {
+      .qa-list{
+        width: 100%;
+      }
+      .qa-item {
+        display: flex;
+        justify-content: center;
+        text-align: left;
+
+        .qa-con {
+          width: 48%;
+         padding:0 15px ;
+
+          .qa-title {
+            font-size: 30px;
+            font-weight: 600;
+
+          }
+
+          ul {
+            width: 100%;
+
+            li {
+              display: flex;
+              padding: 30px 0;
+              width: 100%;
+
+              img {
+                width: 110px;
+                margin-right: 20px;
+              }
+
+              .item-con {
+                width: calc(100% - 140px);
+
+                .item-con-title {
+                  font-size: 22px;
+                  color: var(--txt_color);
+                  margin-bottom: 10px;
+                  text-decoration: underline;
+                  cursor: pointer;
+
+                  &:hover {
+                    text-decoration: none;
+                  }
+                }
+
+                .item-con-overview {
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .qa-select{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 60px;
+        .qa-select-con {
+          width: 100%;
+          text-align: left;
+          max-width: 800px;
+        }
+        .qa-select-title{
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 8px;
+
+        }
+        .qa-select-enter{
+          font-size: 16px;
+          margin-bottom: 8px;
+        }
+        .qa-select-item{
+          display: flex;
+          height: 40px;
+        }
+
+        .el-input{
+          flex: 1;
+          margin-right: 20px;
+        }
+      }
+    }
   }
 }
 </style>
 <style lang="less">
 #index {
-  .search-middleBox {
-    .el-input__inner {
-      background-color: #FFF;
-      border-radius: 20px;
+  .vedio{
+    .el-input {
+      width: 740px;
+      height: 68px;
+      border-radius: 34px;
+      padding: 13px 27px;
+      background-color: #ffffff;
+      margin-bottom: 30px;
     }
+
+    .el-input__inner {
+      border: 0px;
+      font-size: 18px;
+    }
+    .search-middleBox {
+      .el-input__inner {
+        background-color: #FFF;
+        border-radius: 20px;
+      }
+    }
+
   }
-.newMessage{
-  .grid-three {
-    grid-gap: 10px 10px !important;
-  }
-}
-  .el-input {
-    width: 740px;
-    height: 68px;
-    border-radius: 34px;
-    padding: 13px 27px;
-    background-color: #ffffff;
-    margin-bottom: 30px;
-  }
-  .el-input__inner {
-    border: 0px;
-    font-size: 18px;
+
+  .newMessage {
+    .grid-three {
+      grid-gap: 10px 10px !important;
+    }
   }
 
   @media screen and (max-width: 800px) {
@@ -957,62 +1161,99 @@ export default {
       }
     }
 
-
   }
   @media screen and (max-width: 1000px) {
-    .index-moudle{
+    .index-moudle {
       padding: 48px 20px !important;
     }
-    #features .name{
-      margin-bottom: 20px !important;
-    }
-    .el-input {
-      width: 300px;
-      height: 48px;
-      border-radius: 36px;
-      padding: 5px 10px;
-      background-color: #ffffff;
-      margin-bottom: 38px;
-    }
-    .choose-list {
-      margin-bottom: 20px !important;
 
-      li {
-        font-size: 12px !important;
-        padding: 4px 6px !important;
+    #features .name {
+      margin-bottom: 20px !important;
+    }
+    .vedio{
+      .el-input {
+        width: 300px;
+        height: 48px;
+        border-radius: 36px;
+        padding: 5px 10px;
+        background-color: #ffffff;
+        margin-bottom: 38px;
+      }
+
+      .choose-list {
+        margin-bottom: 20px !important;
+
+        li {
+          font-size: 12px !important;
+          padding: 4px 6px !important;
+
+        }
 
       }
 
+      .select-search {
+        top: 7px !important;
+        right: 10px !important;
+        font-size: 14px !important;
+      }
     }
-    .select-search {
-      top: 5px !important;
-      right: 10px !important;
-    }
-    .newMessage{
-      img{
+
+
+
+    .newMessage {
+      img {
         width: 140px !important;
         height: 140px !important;
       }
-      .newMessage-more{
+
+      .newMessage-more {
         width: 200px !important;
         height: 50px !important;
         line-height: 50px !important;
         margin-top: 20px !important;
       }
     }
-    .friend{
+
+    .friend {
       ul {
         li {
           padding: 12px;
-          img{
+
+          img {
             width: 48px !important;
             height: 48px !important;
           }
-          .frind_name{
+
+          .frind_name {
             margin-bottom: 24px !important;
           }
-          .friend_title{
+
+          .friend_title {
             font-size: 16px !important;
+          }
+        }
+      }
+    }
+
+    .qa{
+      .qa-item{
+        flex-direction: column;
+align-items: center;
+        .qa-con{
+          width: 100% !important;
+          .item-con-title{
+            font-size: 20px !important;
+            -webkit-line-clamp: 3 !important;
+          }
+          .item-con-overview{
+            font-size: 16px !important;
+            white-space: wrap !important;
+            display: -webkit-box !important;
+            overflow: hidden !important;
+            word-break: break-all !important; /* break-all(允许在单词内换行。) */
+            -webkit-box-orient: vertical !important;
+            -webkit-line-clamp: 2;
+
           }
         }
       }

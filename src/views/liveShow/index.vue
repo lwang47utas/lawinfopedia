@@ -36,14 +36,14 @@
         <div class="goToLink">
           <router-link to="/answers/legal-issue" tag="span">Answers by legal issue ></router-link>
           <router-link to="/answers/state" tag="span"> Answers by state ></router-link>
-          <router-link to="" tag="span"> Answers list ></router-link>
+          <router-link to="" tag="span"> Recently legal questions and answers ></router-link>
         </div>
         <div v-for="(item,index) in typeList" :key="index" class="typeList">
           <!--          {{item}}-->
           <div class="typeList-name"> {{ item.name }}</div>
 
-          <div class="typeList-lists grid-four">
-            <div v-for="(item1,index1) in item.list" :key="index1" @click="toType(item.path,item1)">{{ item1 }}</div>
+          <div class="typeList-lists grid-four" :class="item.name==='Answers by state'?'typeList1':''">
+            <div  v-for="(item1,index1) in item.list" :key="index1" @click="toType(item.path,item1)">{{ item1 }}</div>
             <router-link :to="item.path" tag="div" class="typeList-lists-more">view more ></router-link>
           </div>
         </div>
@@ -51,7 +51,7 @@
           <div class="typeList-name"> Answers list</div>
           <div class="qaList">
             <div v-for="(item,index) in answerList " :key="index" class="qa-item" @click="readFn(item)">
-              <img src="../../assets/image/newMessage/message.jpg" alt="">
+              <img :src="item.img" alt="">
               <div>
                 <div class="qa-title mle">{{ item.title }}</div>
                 <div class="qa-overview mle">{{ item.overview }}</div>
@@ -154,12 +154,12 @@ export default {
     },
     // 阅读文章
     readFn (item) {
+      // console.log(item.uid,1222222222222222222222222222222222222)
       this.$router.push({ path: `/answers/legal-issue/${this.$route.params.issue}/${item.uid}` })
     },
     // 跳转类型
     toType (path, type) {
       this.$router.push({ path: path + '/' + type })
-
     }
 
   }
@@ -440,7 +440,24 @@ export default {
     padding: 40px 15px;
   }
   @media screen and (max-width: 800px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
+     .typeList .qaList .qa-item img[data-v-4514bbe6] {
+      width: 140px;
+    }
+    .goToLink{
+      span{
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+
+          .typeList1{
+            grid-template-columns: 1fr 1fr !important;
+          }
+
+    //.grid-four{
+    //  grid-template-columns: 1fr 1fr !important;
+    //}
 
   }
 }

@@ -22,10 +22,17 @@ const routes = [
       {
         path: '/search',
         name: 'search',
-        meta: { title: '搜索' },
+        meta: { title: 'search' },
         component: () => import('@/views/search/search.vue')
 
-      }
+      },
+      {
+        path: '/qaSearch',
+        name: 'qaSearch',
+        meta: { title: 'qaSearch' },
+        component: () => import('@/views/search/qaSearch.vue')
+
+      },
     ]
   }
 
@@ -42,6 +49,9 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+  // stringifyQuery(query){
+  //   console.log(query)
+  // }
   // meta: { keepAlive: false },
 })
 router.afterEach((to, from) => {

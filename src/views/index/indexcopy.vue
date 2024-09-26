@@ -883,6 +883,12 @@ export default {
         }
       }
     }
+
+    .qa{
+      .qa-item{
+        display: flex;
+      }
+    }
   }
 }
 </style>

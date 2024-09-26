@@ -35,7 +35,7 @@ export function getLawyerState (params) {
 /**
  * 根据法律查所有地区，根据地区查所有法律
  */
-export function getIdPetArticle(params) {
+export function getIdPetArticle (params) {
   return service({
     url: '/web/articleJson/getIdPetArticle',
     params,
@@ -45,10 +45,19 @@ export function getIdPetArticle(params) {
 /**
  * 最近问答5篇
  */
-export function getLawyerRecommend(params) {
+export function getLawyerRecommend (params) {
   return service({
     url: '/web/articleJson/getLawyerRecommend',
     params,
+    method: 'get'
+  })
+}
+/**
+ * 最近回答的和常见问题
+ */
+export function getRC () {
+  return service({
+    url: '/web/articleJson/getRC',
     method: 'get'
   })
 }

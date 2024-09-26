@@ -1,0 +1,21 @@
+User-agent: *
+Disallow: 
+
+User-agent: Baiduspider*
+User-agent: Sogou*
+Disallow: /
+
+User-agent: AhrefsBot
+User-agent: BLEXBot
+User-agent: CCBot
+User-agent: Cliqzbot
+User-agent: dotbot
+User-agent: ia_archiver
+User-agent: MBCrawler
+User-agent: MJ12bot
+User-agent: Photon
+User-agent: Scrapy
+User-agent: SemrushBot
+User-agent: Linguee
+Disallow: /
+Sitemap: /sitemap.xml

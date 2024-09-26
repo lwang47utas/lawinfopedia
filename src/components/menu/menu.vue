@@ -2,7 +2,7 @@
   <el-container class="main flx-align-center">
     <el-header
       class="header content"
-      :class="popclass !== 'index' ? 'shadow' : ''"
+      :class="popclass === 'index' ? 'white' : 'shadow'"
       :style="{ background: popclass !== 'index' ? '#fff' : 'transparent' }"
     >
 
@@ -12,52 +12,35 @@
             <span :style="{ color: popclass === 'index' ? '#fff' : '#333'}">LAWYERONCLOUD</span>
           </router-link>
         </div>
+        <div class="main-menu">
         <!--  移动端      -->
         <div class="hearder-svg">
-          <el-dropdown>
-           <span class="el-dropdown-link">
-              <svg-icon class-name="hearderIcon"
-                        :icon-class="popclass === 'index' ? 'list-white' : 'list-black'"></svg-icon>
-            </span>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item v-for="(item, index) in menus" :key="index" divided>
+          <el-popover
+            placement="bottom"
+            width="400"
+            trigger="click">
+            <svg-icon slot="reference" class-name="hearderIcon" :icon-class="popclass === 'index' ? 'list' : 'list-black'" @click="showMenu"></svg-icon>
+            <el-menu  :router="true" :text-color="popclass === 'index' ? '#fff' : '#333'"
+                      class="el-menu-demo" mode="horizontal" >
+              <el-submenu v-for="(item, index) in menus" :key="index" :index="item.path">
+                <template slot="title"> {{ item.name }}</template>
+                <el-menu-item class="item-children" v-for="(e, i) in item.children" :key="i"  :index="e.path">{{ e.name }}</el-menu-item>
+              </el-submenu>
+              <el-menu-item index="/answers">Legal Q & A</el-menu-item>
 
-                {{ $t(`menu.menu${index}.title`) }}
-                <li v-for="(e, i) in item.children" :key="i">
-                  <router-link active-class="active" :to="e.path" class="rout"
-                               @click.native="setPopClass(item)">
-
-                    <span>{{ $t(`menu.menu${index}.list${i}`)}}</span>
-                  </router-link>
-                </li>
-
-              </el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+            </el-menu>
+          </el-popover>
         </div>
         <ul class="main-item">
+          <el-menu  :router="true" :text-color="popclass === 'index' ? '#fff' : '#333'"
+                    class="el-menu-demo" mode="horizontal" >
+            <el-submenu v-for="(item, index) in menus" :key="index" :index="item.path">
+              <template slot="title"> {{ item.name }}</template>
+                   <el-menu-item class="item-children" v-for="(e, i) in item.children" :key="i"  :index="e.path">{{ e.name }}</el-menu-item>
+            </el-submenu>
+            <el-menu-item index="/answers">Legal Q & A</el-menu-item>
 
-          <li v-for="(item, index) in menus" :key="index">
-            <el-dropdown
-              class="rout"
-              :style="{ color: popclass === 'index' ? '#fff' : '#333' }"
-            >
-              <span class="el-dropdown-link">
-                 {{ $t(`menu.menu${index}.title`) }}<i class="el-icon-arrow-down el-icon--right"></i>
-              </span>
-              <el-dropdown-menu slot="dropdown"
-
-              >
-                <el-dropdown-item v-for="(e, i) in item.children" :key="i">
-                  <router-link active-class="active" :to="e.path" class="rout"
-                               @click.native="setPopClass(e)">
-
-                    <span>{{$t(`menu.menu${index}.list${i}`)}}</span>
-                  </router-link>
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </li>
+          </el-menu>
         </ul>
         <el-select v-model="langValue" @change="langChange" placeholder="请选择">
           <el-option
@@ -69,6 +52,7 @@
             value="en">
           </el-option>
         </el-select>
+        </div>
       </div>
 
       <!--      <div-->
@@ -101,13 +85,18 @@ export default {
   data () {
     return {
       popclass: localStorage.getItem('changeRoute'),
-      langValue: localStorage.getItem('denLanguage') || 'en'
+      langValue: localStorage.getItem('lawLanguage') || 'en',
+      isShowMenu: false
     }
   },
   methods: {
+    // 切换菜单展示模式
+    showMenu () {
+      this.isShowMenu = !this.isShowMenu
+    },
     // 切换语言
     langChange () {
-      localStorage.setItem('denLanguage', this.langValue)
+      localStorage.setItem('lawLanguage', this.langValue)
       this.$i18n.locale = this.langValue
       this.$router.go({ path: this.$route.fullPath })
     },
@@ -191,7 +180,7 @@ export default {
     .hearder-svg {
       height: 100%;
       line-height: @head_height;
-
+      margin-right: 10px;
       .hearderIcon {
         width: 32px;
         height: 32px;
@@ -219,7 +208,9 @@ export default {
         }
       }
     }
-
+.main-menu{
+  display: flex;
+}
     .main-item {
       //margin-left: 190px;
       //width: 40%;
@@ -323,6 +314,85 @@ export default {
       padding-right: 20px;
       padding:0 5px;
     }
+  }
+}
+.el-submenu__title {
+  font-size: 16px;
+  transition: border-color 0s, background-color 0s, color 0s;
+}
+
+.el-menu-demo {
+  background: transparent !important;
+}
+
+
+.el-menu-item {
+  //color: #66b1ff !important;
+  border-bottom: 0;
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+
+.el-menu--popup {
+  .el-submenu__title {
+    color: #66b1ff !important;
+
+    &:hover {
+      background-color: #ecf5ff !important;
+    }
+  }
+}
+.el-menu.el-menu--horizontal{
+  border-bottom: 0;
+}
+
+.el-menu--horizontal > .el-submenu .el-submenu__title:hover {
+  background-color: transparent !important;
+}
+.el-menu--horizontal>.el-submenu.is-active .el-submenu__title{
+  border-bottom: 0;
+
+}
+.el-menu--horizontal>.el-menu-item{
+  height: 90px;
+  line-height: 90px;
+}
+.el-menu--horizontal>.el-submenu .el-submenu__title {
+  height: 90px;
+  line-height: 90px;
+}
+.white {
+  .el-submenu__title {
+    color: #ffffff !important;
+  }
+  .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+    outline: 0;
+    color: #ffffff;
+  }
+  .el-menu-item.is-active{
+    color: #ffffff;
+    border-bottom: 0;
+  }
+}
+
+.item-children{
+  color: #000 !important;
+}
+.el-popover{
+  width: 210px !important;
+  top: 80px !important;
+  right: 0 !important;
+  .el-submenu__title{
+    color: #000 !important;
+  }
+  .el-menu--horizontal>.el-menu-item{
+    height: 50px;
+    line-height: 50px;
+  }
+  .el-menu--horizontal>.el-submenu .el-submenu__title {
+    height: 50px;
+    line-height: 50px;
   }
 }
 </style>
