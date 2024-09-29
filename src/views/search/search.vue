@@ -1,8 +1,12 @@
 <template>
   <div id="search">
-    <message-aside :msg-list="msgList"></message-aside>
     <div class="search-box">
-      <div class="search-list" v-for="item in queryList" :key="item.oid" @click="searchListFn(item)">
+      <div
+        class="search-list"
+        v-for="item in queryList"
+        :key="item.oid"
+        @click="searchListFn(item)"
+      >
         <div class="search-name">{{ item.name }}</div>
         <div class="search-about mle">{{ item.aboutThisOffice }}</div>
         <div class="search-address">{{ item.address }}</div>
@@ -13,51 +17,61 @@
         :current-page.sync="pageNo"
         :page-size="pageSize"
         layout="pager"
-        :total="total">
+        :total="total"
+      >
       </el-pagination>
     </div>
+    <message-aside :msg-list="msgList"></message-aside>
   </div>
 </template>
 
 <script>
-import { getQuery } from '@/api/index'
-import { getPetArticleList } from '@/libs/utils'
+import { getQuery } from "@/api/index";
+import { getPetArticleList } from "@/libs/utils";
 
 export default {
-  data () {
+  data() {
     return {
       queryList: [],
       pageNo: 1,
       pageSize: 20,
       total: 0,
-    }
+    };
   },
-  async mounted () {
-    this.msgList = await getPetArticleList()
+  async mounted() {
+    this.msgList = await getPetArticleList();
+    const loading = this.$loading({
+      lock: true,
+      text: "Loading",
+      spinner: "el-icon-loading",
+      background: "rgba(0, 0, 0, 0.7)",
+    });
+
     getQuery({
-      msg:
-      this.$route.query.msg,
+      msg: this.$route.query.msg,
       pageNo: this.pageNo,
-      pageSize: this.pageSize
-    }).then(res => {
-      this.queryList = res.data.list
-      this.total = res.data.total
-    })
+      pageSize: this.pageSize,
+    }).then((res) => {
+      this.queryList = res.data.list;
+      this.total = res.data.total;
+      setTimeout(() => {
+        loading.close();
+      }, 1500);
+      //loading.close();
+    });
   },
   methods: {
-    handleCurrentChange () {
-
-    },
-    searchListFn (item) {
-      console.log(item)
-      const type = item.categoryItem.replace(/\s+/g, '-')
-      const area = item.area === '' ? 'county' : item.area
+    handleCurrentChange() {},
+    searchListFn(item) {
+      console.log(item);
+      const type = item.categoryItem.replace(/\s+/g, "-");
+      const area = item.area === "" ? "county" : item.area;
       this.$router.push({
-        path: '/' + type + '/' + item.state + '/' + area + '/' + item.ly,
-      })
-    }
-  }
-}
+        path: "/" + type + "/" + item.state + "/" + area + "/" + item.ly,
+      });
+    },
+  },
+};
 </script>
 
 <style scoped lang="less">
@@ -108,6 +122,4 @@ export default {
     }
   }
 }
-
-
 </style>

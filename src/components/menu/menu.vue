@@ -5,53 +5,90 @@
       :class="popclass === 'index' ? 'white' : 'shadow'"
       :style="{ background: popclass !== 'index' ? '#fff' : 'transparent' }"
     >
-
       <div class="hearder-content">
         <div class="main-name">
           <router-link :to="logo.path" @click.native="setPopClass(logo)">
-            <span :style="{ color: popclass === 'index' ? '#fff' : '#333'}">LAWYERONCLOUD</span>
+            <!--<span :style="{ color: popclass === 'index' ? '#fff' : '#333' }"
+              >LAWYERONCLOUD</span
+            >-->
+            <img
+              decoding="async"
+              id="image"
+              src="@/assets/image/logoname.png"
+              :alt="logo.path"
+            />
           </router-link>
         </div>
         <div class="main-menu">
-        <!--  移动端      -->
-        <div class="hearder-svg">
-          <el-popover
-            placement="bottom"
-            width="400"
-            trigger="click">
-            <svg-icon slot="reference" class-name="hearderIcon" :icon-class="popclass === 'index' ? 'list' : 'list-black'" @click="showMenu"></svg-icon>
-            <el-menu  :router="true" :text-color="popclass === 'index' ? '#fff' : '#333'"
-                      class="el-menu-demo" mode="horizontal" >
-              <el-submenu v-for="(item, index) in menus" :key="index" :index="item.path">
+          <!--  移动端      -->
+          <div class="hearder-svg">
+            <el-popover placement="bottom" width="400" trigger="click">
+              <svg-icon
+                slot="reference"
+                class-name="hearderIcon"
+                :icon-class="popclass === 'index' ? 'list' : 'list-black'"
+                @click="showMenu"
+              ></svg-icon>
+              <el-menu
+                :router="true"
+                :menu-trigger="true"
+                :text-color="popclass === 'index' ? '#fff' : '#333'"
+                class="el-menu-demo"
+                mode="horizontal"
+              >
+                <el-submenu
+                  v-for="(item, index) in menus"
+                  :key="index"
+                  :index="item.path"
+                >
+                  <template slot="title"> {{ item.name }}</template>
+                  <el-menu-item
+                    class="item-children"
+                    v-for="(e, i) in item.children"
+                    :key="i"
+                    :index="e.path"
+                    >{{ e.name }}</el-menu-item
+                  >
+                </el-submenu>
+                <el-menu-item class="item-children" index="/answers"
+                  >Legal Q & A</el-menu-item
+                >
+              </el-menu>
+            </el-popover>
+          </div>
+          <ul class="main-item">
+            <el-menu
+              :router="true"
+              :text-color="popclass === 'index' ? '#fff' : '#333'"
+              class="el-menu-demo"
+              mode="horizontal"
+              :menu-trigger="true"
+            >
+              <el-submenu
+                v-for="(item, index) in menus"
+                :key="index"
+                :index="item.path"
+              >
                 <template slot="title"> {{ item.name }}</template>
-                <el-menu-item class="item-children" v-for="(e, i) in item.children" :key="i"  :index="e.path">{{ e.name }}</el-menu-item>
+                <el-menu-item
+                  class="item-children"
+                  v-for="(e, i) in item.children"
+                  :key="i"
+                  :index="e.path"
+                  >{{ e.name }}</el-menu-item
+                >
               </el-submenu>
               <el-menu-item index="/answers">Legal Q & A</el-menu-item>
-
             </el-menu>
-          </el-popover>
-        </div>
-        <ul class="main-item">
-          <el-menu  :router="true" :text-color="popclass === 'index' ? '#fff' : '#333'"
-                    class="el-menu-demo" mode="horizontal" >
-            <el-submenu v-for="(item, index) in menus" :key="index" :index="item.path">
-              <template slot="title"> {{ item.name }}</template>
-                   <el-menu-item class="item-children" v-for="(e, i) in item.children" :key="i"  :index="e.path">{{ e.name }}</el-menu-item>
-            </el-submenu>
-            <el-menu-item index="/answers">Legal Q & A</el-menu-item>
-
-          </el-menu>
-        </ul>
-        <el-select v-model="langValue" @change="langChange" placeholder="请选择">
-          <el-option
-            label="Español"
-            value="es">
-          </el-option>
-          <el-option
-            label="English"
-            value="en">
-          </el-option>
-        </el-select>
+          </ul>
+          <el-select
+            v-model="langValue"
+            @change="langChange"
+            placeholder="请选择"
+          >
+            <el-option label="Español" value="es"> </el-option>
+            <el-option label="English" value="en"> </el-option>
+          </el-select>
         </div>
       </div>
 
@@ -75,54 +112,57 @@
   </el-container>
 </template>
 <script>
-import footerCom from '../footerCom/footerCom.vue'
+import footerCom from "../footerCom/footerCom.vue";
 // import { getMaxTemp, getMinTemp, getRain, getWind } from "@/api/alert";
 
 export default {
   components: { footerCom },
 
-  props: ['logo', 'menus', 'isBellAlert', 'radarStateAlert'],
-  data () {
+  props: ["logo", "menus", "isBellAlert", "radarStateAlert"],
+  data() {
     return {
-      popclass: localStorage.getItem('changeRoute'),
-      langValue: localStorage.getItem('lawLanguage') || 'en',
-      isShowMenu: false
-    }
+      popclass: localStorage.getItem("changeRoute"),
+      langValue: localStorage.getItem("lawLanguage") || "en",
+      isShowMenu: false,
+    };
   },
   methods: {
     // 切换菜单展示模式
-    showMenu () {
-      this.isShowMenu = !this.isShowMenu
+    showMenu() {
+      this.isShowMenu = !this.isShowMenu;
     },
     // 切换语言
-    langChange () {
-      localStorage.setItem('lawLanguage', this.langValue)
-      this.$i18n.locale = this.langValue
-      this.$router.go({ path: this.$route.fullPath })
+    langChange() {
+      localStorage.setItem("lawLanguage", this.langValue);
+      this.$i18n.locale = this.langValue;
+      this.$router.go({ path: this.$route.fullPath });
     },
-    setPopClass (item) {
-      this.popclass = item.path
-      if (item.path === '/index') {
-        this.popclass = 'index'
+    setPopClass(item) {
+      this.popclass = item.path;
+      if (item.path === "/index" || item.path === "/") {
+        this.popclass = "index";
       }
-      localStorage.setItem('changeRoute', item)
+      localStorage.setItem("changeRoute", item);
     },
-    closePopClass (item) {
-      this.selectName = item.name
-      this.popclass = false
+    closePopClass(item) {
+      this.selectName = item.name;
+      this.popclass = false;
     },
-    goNew (url) {
-      window.open(url, '_blank')
-    }
+    goNew(url) {
+      window.open(url, "_blank");
+    },
   },
-  mounted () {
-    this.popclass = this.$route.name
+  mounted() {
+    this.popclass = this.$route.name;
+    if (this.$route.name == undefined) {
+      this.popclass = "index";
+    }
   },
   watch: {
-    $route (to, from) {
-      this.popclass = to.name
-    }
-  }
+    $route(to, from) {
+      this.popclass = to.name;
+    },
+  },
   // beforeDestroy() {
   //   this.getSuperWeather && clearInterval(this.getSuperWeather);
   //   this.getSuperWeather = null;
@@ -132,7 +172,7 @@ export default {
   //     return this.superWeather.length !== 0;
   //   },
   // },
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -171,8 +211,11 @@ export default {
     z-index: 900;
 
     img {
-      margin-left: 240px;
+      margin-left: 0px;
+      // margin-top: -15px;
       vertical-align: middle;
+      width: 160px;
+
       // width: 120px;
       // height: 50px;
     }
@@ -208,9 +251,9 @@ export default {
         }
       }
     }
-.main-menu{
-  display: flex;
-}
+    .main-menu {
+      display: flex;
+    }
     .main-item {
       //margin-left: 190px;
       //width: 40%;
@@ -220,10 +263,7 @@ export default {
       font-size: 24px;
       font-weight: bold;
 
-
       li {
-
-
         div {
           display: inline-block;
           margin-right: 40px;
@@ -286,8 +326,7 @@ export default {
 }
 </style>
 <style lang="less">
-
-.main{
+.main {
   .el-dropdown {
     font-size: 18px;
   }
@@ -305,14 +344,14 @@ export default {
   .el-select {
     width: 100px !important;
   }
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 800px) {
     .el-select {
       width: 70px !important;
     }
 
     .el-input--suffix .el-input__inner {
       padding-right: 20px;
-      padding:0 5px;
+      padding: 0 5px;
     }
   }
 }
@@ -324,7 +363,6 @@ export default {
 .el-menu-demo {
   background: transparent !important;
 }
-
 
 .el-menu-item {
   //color: #66b1ff !important;
@@ -343,22 +381,21 @@ export default {
     }
   }
 }
-.el-menu.el-menu--horizontal{
+.el-menu.el-menu--horizontal {
   border-bottom: 0;
 }
 
 .el-menu--horizontal > .el-submenu .el-submenu__title:hover {
   background-color: transparent !important;
 }
-.el-menu--horizontal>.el-submenu.is-active .el-submenu__title{
+.el-menu--horizontal > .el-submenu.is-active .el-submenu__title {
   border-bottom: 0;
-
 }
-.el-menu--horizontal>.el-menu-item{
+.el-menu--horizontal > .el-menu-item {
   height: 90px;
   line-height: 90px;
 }
-.el-menu--horizontal>.el-submenu .el-submenu__title {
+.el-menu--horizontal > .el-submenu .el-submenu__title {
   height: 90px;
   line-height: 90px;
 }
@@ -366,31 +403,32 @@ export default {
   .el-submenu__title {
     color: #ffffff !important;
   }
-  .el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+  .el-menu--horizontal .el-menu-item:not(.is-disabled):focus,
+  .el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
     outline: 0;
     color: #ffffff;
   }
-  .el-menu-item.is-active{
+  .el-menu-item.is-active {
     color: #ffffff;
     border-bottom: 0;
   }
 }
 
-.item-children{
+.item-children {
   color: #000 !important;
 }
-.el-popover{
+.el-popover {
   width: 210px !important;
   top: 80px !important;
   right: 0 !important;
-  .el-submenu__title{
+  .el-submenu__title {
     color: #000 !important;
   }
-  .el-menu--horizontal>.el-menu-item{
+  .el-menu--horizontal > .el-menu-item {
     height: 50px;
     line-height: 50px;
   }
-  .el-menu--horizontal>.el-submenu .el-submenu__title {
+  .el-menu--horizontal > .el-submenu .el-submenu__title {
     height: 50px;
     line-height: 50px;
   }

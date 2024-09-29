@@ -1,6 +1,6 @@
 <template>
   <div id="index">
-
+    <Home />
     <div class="index">
       <div class="vedio">
         <!-- <video
@@ -30,53 +30,76 @@
         <!--          <source src="@/assets/vedio/官网抬头视频.mp4" type="video/mp4" />-->
         <!--        </video>-->
         <div class="image-container">
-          <img decoding="async" id="image" src="../../assets/image/index/banner-desktop.webp" alt="">
+          <img
+            decoding="async"
+            id="image"
+            src="../../assets/image/index/banner-desktop.webp"
+            alt=""
+          />
         </div>
         <div class="index-banner">
-          <div class="banner-title">{{ $t('index.header.headerTitle1') }} <span>{{
-              $t('index.header.headerTitle2')
-            }}</span> {{ $t('index.header.headerTitle3') }}
+          <div class="banner-title">
+            {{ $t("index.header.headerTitle1") }}
+            <span>{{ $t("index.header.headerTitle2") }}</span>
+            {{ $t("index.header.headerTitle3") }}
           </div>
           <div class="banner-select">
-            <el-input placeholder="search" v-model="searchValue">
+            <el-input
+              placeholder="office,case types,service..."
+              v-model="searchValue"
+            >
             </el-input>
-            <div class="select-search" @click="searchFn(null)">{{ $t('index.header.search') }}</div>
+            <div class="select-search" @click="searchFn(null)">
+              {{ $t("index.header.search") }}
+            </div>
           </div>
-          <div class="banner-label"><span>{{ $t('index.headerSearch.trending') }}:</span>
-            <div @click="searchFn('legal aid')">{{ $t('index.headerSearch.search1') }}</div>
-            <div @click="searchFn('accidental lawyer')">{{ $t('index.headerSearch.search2') }}</div>
-            <div @click="searchFn('get lawyer help')">{{ $t('index.headerSearch.search3') }}</div>
-            <div @click="searchFn('bankruptcy lawyer')">{{ $t('index.headerSearch.search4') }}</div>
+          <div class="banner-label">
+            <span>{{ $t("index.headerSearch.trending") }}:</span>
+            <div @click="searchFn('legal aid')">
+              {{ $t("index.headerSearch.search1") }}
+            </div>
+            <div @click="searchFn('accidental lawyer')">
+              {{ $t("index.headerSearch.search2") }}
+            </div>
+            <div @click="searchFn('get lawyer help')">
+              {{ $t("index.headerSearch.search3") }}
+            </div>
+            <div @click="searchFn('bankruptcy lawyer')">
+              {{ $t("index.headerSearch.search4") }}
+            </div>
           </div>
-
         </div>
         <div class="banner-number">
-          <div v-for="(item,index) in allList.numList" :key="index">
+          <div v-for="(item, index) in allList.numList" :key="index">
             <div class="number-num">{{ item.num }}</div>
-            <div class="number-content">{{ $t(`index.number.number${index + 1}`) }}</div>
+            <div class="number-content">
+              {{ $t(`index.number.number${index + 1}`) }}
+            </div>
           </div>
         </div>
-
       </div>
       <div class="index-moudle show-list">
-        <features :name="$t('index.legal-offices.intro')" url="/dog"
-                  :title="$t('index.legal-offices.title')">
+        <features
+          :name="$t('index.legal-offices.intro')"
+          url="/"
+          :title="$t('index.legal-offices.title')"
+        >
           <template v-slot:two>
             <ul class="index-moudle1 index-moudle-ul content-width grid-three">
-
               <li
                 v-for="(item, index) in allList.produceList"
                 :key="index"
                 class="curser-hover"
               >
-                <router-link :to="`/${item.categoryItemEn.replace(/\s+/g, '-')}`">
-                  <img :src="item.img" alt="">
+                <router-link
+                  :to="`/${item.categoryItemEn.replace(/\s+/g, '-')}`"
+                >
+                  <img :src="item.img" alt="" />
                   <div>
                     <div class="newTitle mle">{{ item.categoryItem }}</div>
                     <div class="newMore">
                       {{ item.total }}
                       <svg-icon icon-class="right"></svg-icon>
-
                     </div>
                   </div>
                 </router-link>
@@ -93,54 +116,59 @@
         </features>
       </div>
       <div class="index-moudle newMessage">
-        <features :name="$t('index.free.intro')" url="/news"
-                  :title="$t('index.free.title')">
+        <features
+          :name="$t('index.free.intro')"
+          url="/news"
+          :title="$t('index.free.title')"
+        >
           <template v-slot:one>
-            <ul class="choose-list  content-width ">
-              <router-link :to="{path:'/post/category/Pro-Bono-Services'}">
-                <li>{{ $t('index.free.liList.li1') }}</li>
+            <ul class="choose-list content-width">
+              <router-link :to="{ path: '/post/category/Pro-Bono-Services' }">
+                <li>{{ $t("index.free.liList.li1") }}</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Unemployment-Benefits'}">
-                <li> {{ $t('index.free.liList.li2') }}</li>
+              <router-link
+                :to="{ path: '/post/category/Unemployment-Benefits' }"
+              >
+                <li>{{ $t("index.free.liList.li2") }}</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Free-Legal-Aid'}">
-                <li>{{ $t('index.free.liList.li3') }}</li>
+              <router-link :to="{ path: '/post/category/Free-Legal-Aid' }">
+                <li>{{ $t("index.free.liList.li3") }}</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Retaining-a-Lawyer'}">
-                <li> {{ $t('index.free.liList.li4') }}</li>
+              <router-link :to="{ path: '/post/category/Retaining-a-Lawyer' }">
+                <li>{{ $t("index.free.liList.li4") }}</li>
               </router-link>
-              <router-link :to="{path:'/post/category/ACLU'}">
-                <li>{{ $t('index.free.liList.li5') }}</li>
+              <router-link :to="{ path: '/post/category/ACLU' }">
+                <li>{{ $t("index.free.liList.li5") }}</li>
               </router-link>
-              <router-link :to="{path:'/post/category/Types-of-Lawyers'}">
-                <li>{{ $t('index.free.liList.li6') }}</li>
+              <router-link :to="{ path: '/post/category/Types-of-Lawyers' }">
+                <li>{{ $t("index.free.liList.li6") }}</li>
               </router-link>
             </ul>
           </template>
           <template v-slot:two>
             <ul class="message index-moudle-ul content-width grid-three">
-
-              <router-link v-for="(item, index) in allList.messageList.newsList" tag="li" :key="index"
-                           :to="`/news/content/${item.uid}`">
-                <img :src=" item.img" alt="">
+              <router-link
+                v-for="(item, index) in allList.messageList.newsList"
+                tag="li"
+                :key="index"
+                :to="`/news/content/${item.uid}`"
+              >
+                <img :src="item.img" alt="" />
                 <div>
                   <div class="newTitle mle">{{ item.title }}</div>
-                  <span v-for="(item1,index1) in item.label" :key="index1">{{ item1 }}</span>
+                  <span v-for="(item1, index1) in item.label" :key="index1">{{
+                    item1
+                  }}</span>
                   <div class="newMore">
-
-                    <div>
-                      Read More
-                    </div>
-
+                    <div>Read More</div>
                   </div>
                 </div>
               </router-link>
             </ul>
           </template>
         </features>
-        <router-link to="/post/category/ALL" tag="div" class="newMessage-more"> {{
-            $t('index.free.moreButton')
-          }}
+        <router-link to="/post/category/ALL" tag="div" class="newMessage-more">
+          {{ $t("index.free.moreButton") }}
         </router-link>
       </div>
       <div class="index-moudle friend">
@@ -150,96 +178,102 @@
           :title="$t('index.about.title')"
         >
           <template v-slot:one>
-            <ul class=" index-moudle-ul content-width grid-three">
-              <li
-                v-for="(item, index) in allList.serviceList"
-                :key="index"
-              >
-
+            <ul class="index-moudle-ul content-width grid-three">
+              <li v-for="(item, index) in allList.serviceList" :key="index">
                 <div>
-                  <img
-                    :src="item.img"
-                    alt=""
-                  >
+                  <img :src="item.img" alt="" />
                 </div>
-                <div class="frind_name">{{ $t(`index.about.about${index + 1}.name`) }}</div>
-                <div class="friend_title">{{ $t(`index.about.about${index + 1}.intro`) }}</div>
-
+                <div class="frind_name">
+                  {{ $t(`index.about.about${index + 1}.name`) }}
+                </div>
+                <div class="friend_title">
+                  {{ $t(`index.about.about${index + 1}.intro`) }}
+                </div>
               </li>
             </ul>
           </template>
         </features>
-
       </div>
       <div class="index-moudle qa">
         <features
           name="Get answers from experienced lawyers"
           url=""
           title="Legal Q & A"
-
         >
           <div class="qa-list">
             <div class="qa-item index-moudle-ul content-width">
               <div class="qa-con">
                 <div class="qa-title">Recently answered</div>
                 <ul class="">
-                  <li v-for="(item,index) in qaList.recentlyAnswered" :key="index">
-                    <img :src="item.img" alt="">
+                  <li
+                    v-for="(item, index) in qaList.recentlyAnswered"
+                    :key="index"
+                  >
+                    <img :src="item.img" alt="" />
                     <div class="item-con">
-                      <div class="item-con-title mle" @click="qaClick(item) "> {{ item.title }}</div>
-                      <div class="item-con-overview sle">{{ item.overview }}</div>
+                      <div class="item-con-title mle" @click="qaClick(item)">
+                        {{ item.title }}
+                      </div>
+                      <div class="item-con-overview sle">
+                        {{ item.overview }}
+                      </div>
                     </div>
                     <!--                <img :src="item.img" alt="">-->
                   </li>
                 </ul>
               </div>
               <div class="qa-con">
-                <div class="qa-title"> Common questions</div>
+                <div class="qa-title">Common questions</div>
                 <ul class="">
-                  <li v-for="(item,index) in qaList.commonQuestions" :key="index">
-                    <img :src="item.img" alt="">
+                  <li
+                    v-for="(item, index) in qaList.commonQuestions"
+                    :key="index"
+                  >
+                    <img :src="item.img" alt="" />
                     <div class="item-con">
-                      <div class="item-con-title mle" @click="qaClick(item) "> {{ item.title }}</div>
-                      <div class="item-con-overview sle">{{ item.overview }}</div>
+                      <div class="item-con-title mle" @click="qaClick(item)">
+                        {{ item.title }}
+                      </div>
+                      <div class="item-con-overview sle">
+                        {{ item.overview }}
+                      </div>
                     </div>
-
                   </li>
                 </ul>
               </div>
-
             </div>
-          <div class="qa-select">
-            <div class="qa-select-con">
-
-            <div class="qa-select-title">
-              Find information about your legal issue
-
-            </div>
-            <div class="qa-select-enter">Enter your legal issue here</div>
-            <div class="qa-select-item">
-<!--              <el-select-->
-<!--                v-model="qaValue"-->
-<!--                filterable-->
-<!--                placeholder="legal issue"-->
-<!--                no-match-text=" "-->
-<!--              >-->
-<!--                <el-option-->
-<!--                  v-for="item in qaOptions"-->
-<!--                  :key="item.value"-->
-<!--                  :label="item.label"-->
-<!--                  :value="item.value">-->
-<!--                </el-option>-->
-<!--              </el-select>-->
-              <el-input v-model="qaValue" placeholder="请输入内容"></el-input>
-              <div class="select-search" @click="searchQaFn()">{{ $t('index.header.search') }}</div>
-            </div>
+            <div class="qa-select">
+              <div class="qa-select-con">
+                <div class="qa-select-title">
+                  Find information about your legal issue
+                </div>
+                <div class="qa-select-enter">Enter your legal issue here</div>
+                <div class="qa-select-item">
+                  <!--              <el-select-->
+                  <!--                v-model="qaValue"-->
+                  <!--                filterable-->
+                  <!--                placeholder="legal issue"-->
+                  <!--                no-match-text=" "-->
+                  <!--              >-->
+                  <!--                <el-option-->
+                  <!--                  v-for="item in qaOptions"-->
+                  <!--                  :key="item.value"-->
+                  <!--                  :label="item.label"-->
+                  <!--                  :value="item.value">-->
+                  <!--                </el-option>-->
+                  <!--              </el-select>-->
+                  <el-input
+                    v-model="qaValue"
+                    placeholder="请输入内容"
+                  ></el-input>
+                  <div class="select-search" @click="searchQaFn()">
+                    {{ $t("index.header.search") }}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          </div>
-
         </features>
-
       </div>
       <footer-com></footer-com>
     </div>
@@ -247,165 +281,171 @@
 </template>
 
 <script>
-import { allList } from './js/index.js'
+import { allList } from "./js/index.js";
 
-import features from '../../components/features/features.vue'
-import FooterCom from '../../components/footerCom/footerCom.vue'
-
-import { articleRandom, getType } from '@/api/index'
-import { getRC } from '@/api/qa'
+import features from "../../components/features/features.vue";
+import FooterCom from "../../components/footerCom/footerCom.vue";
+import Home from "@/views/Home.vue";
+import { articleRandom, getType } from "@/api/index";
+import { getRC } from "@/api/qa";
 
 export default {
   components: {
     features,
-    FooterCom
+    Home,
+    FooterCom,
   },
-  data () {
+  data() {
     return {
       // 所有列表文字
       allList,
       // 鼠标悬浮在哪个上面
-      mouseName: '',
+      mouseName: "",
       mouseindex: null,
       // 防抖
       timer: null,
-      versionUrl: 'index',
+      versionUrl: "index",
       isRouterAlive: true,
       dogTotal: 0,
       catTotal: 0,
       typeList: [
         {
-          value: 'dog',
-          label: 'dog'
-        }, {
-          value: 'cat',
-          label: 'cat'
-        }
+          value: "dog",
+          label: "dog",
+        },
+        {
+          value: "cat",
+          label: "cat",
+        },
       ],
       searchList: {},
-      searchValue: '',
+      searchValue: "",
       qaList: {}, // 问答列表
-      qaValue: '', // 问答列表
-      qaOptions: [{
-        value: 'Business Litigation',
-        label: 'Business Litigation'
-      }, {
-        value: 'Criminal Law',
-        label: 'Criminal Law'
-      }, {
-        value: 'Custody & Visitation',
-        label: 'Custody & Visitation'
-      }, {
-        value: 'Divorce',
-        label: 'Divorce'
-      }
-
-      ]
-    }
+      qaValue: "", // 问答列表
+      qaOptions: [
+        {
+          value: "Business Litigation",
+          label: "Business Litigation",
+        },
+        {
+          value: "Criminal Law",
+          label: "Criminal Law",
+        },
+        {
+          value: "Custody & Visitation",
+          label: "Custody & Visitation",
+        },
+        {
+          value: "Divorce",
+          label: "Divorce",
+        },
+      ],
+    };
   },
   watch: {
-    $route (to, from) {
-      this.versionUrl = to.name
-    }
+    $route(to, from) {
+      this.versionUrl = to.name;
+    },
   },
-  mounted () {
-    this.getImg()
-    this.versionUrl = this.$route.name
-    this.randomFn()
-    this.getTypeList()
-    this.getRCFn()
+  mounted() {
+    this.getImg();
+    this.versionUrl = this.$route.name;
+    this.randomFn();
+    this.getTypeList();
+    this.getRCFn();
   },
   methods: {
-    getImg () {
+    getImg() {
       // 获取图片元素
-      var imgElement = document.getElementById('image')
+      var imgElement = document.getElementById("image");
 
-      imgElement.addEventListener('load', function () {
+      imgElement.addEventListener("load", function () {
         // 图片加载完成后，可以在这里添加逻辑，比如移除白色背景
-        this.style.backgroundColor = 'transparent' // 设置背景色为透明
-      })
-      imgElement.addEventListener('error', function () {
+        this.style.backgroundColor = "transparent"; // 设置背景色为透明
+      });
+      imgElement.addEventListener("error", function () {
         // 图片加载失败时的处理逻辑
-        this.style.backgroundColor = 'white' // 可以继续显示白色背景或其他提示
-      })
+        this.style.backgroundColor = "white"; // 可以继续显示白色背景或其他提示
+      });
     },
     // 鼠标经过离开
-    mouseover (item, index) {
-      this.mouseindex = index
-      this.mouseName = item
+    mouseover(item, index) {
+      this.mouseindex = index;
+      this.mouseName = item;
       // fangdou(((this.mouseindex = index), (this.mouseName = item)), 1000)
     },
-    mouseout (item, index) {
-      this.mouseindex = ''
-      this.mouseName = ''
+    mouseout(item, index) {
+      this.mouseindex = "";
+      this.mouseName = "";
       // fangdou((this.mouseindex = '')), 1000)
     },
     // 立即开始
-    toBegin () {
-      this.$router.push('/service')
-      this.reload()
+    toBegin() {
+      this.$router.push("/service");
+      this.reload();
     },
 
-    reload () {
-      this.isRouterAlive = false
+    reload() {
+      this.isRouterAlive = false;
       this.$nextTick(function () {
-        this.isRouterAlive = true
-      })
+        this.isRouterAlive = true;
+      });
     },
     // typeChange(){
     //
     // },
     // 获取类型
-    getTypeList () {
-      getType().then(res => {
-        this.allList.produceList = res.data
-      })
+    getTypeList() {
+      getType().then((res) => {
+        this.allList.produceList = res.data;
+      });
     },
     // 推荐文章
-    randomFn () {
-      articleRandom({ type: 1 }).then(res => {
-        this.allList.messageList.newsList = res.data.lawyerArticleTypeDTOList
-      })
+    randomFn() {
+      articleRandom({ type: 1 }).then((res) => {
+        this.allList.messageList.newsList = res.data.lawyerArticleTypeDTOList;
+      });
     },
     // 点击查询
-    searchType () {
+    searchType() {
       this.$router.push({
         // name: 'newsContent',
         path: `/${this.searchValue.typeValue}`,
-        query: { obj: JSON.stringify(this.searchValue) }
-      })
+        query: { obj: JSON.stringify(this.searchValue) },
+      });
     },
     // 点击搜索
-    searchFn (item) {
+    searchFn(item) {
       // console.log(item)
-      this.searchValue = item || this.searchValue
+      this.searchValue = item || this.searchValue;
       this.$router.push({
         // name: 'newsContent',
-        path: '/search',
-        query: { msg: this.searchValue }
-      })
+        path: "/search",
+        query: { msg: this.searchValue },
+      });
     },
     // 搜索问答
-    searchQaFn () {
-      this.$router.push({ path: '/qaSearch', query: { msg: this.qaValue } })
+    searchQaFn() {
+      this.$router.push({ path: "/qaSearch", query: { msg: this.qaValue } });
     },
-    getRCFn (item) {
-      getRC().then(res => {
-        this.qaList = res.data
-      })
+    getRCFn(item) {
+      getRC().then((res) => {
+        this.qaList = res.data;
+      });
     },
-    qaClick (item) {
-      this.$router.push({ path: '/answers/legal-issue/' + item.label[0] + '/' + item.uid })
-    }
-
+    qaClick(item) {
+      this.$router.push({
+        path: "/answers/legal-issue/" + item.label[0] + "/" + item.uid,
+      });
+    },
   },
 
-  provide () {
+  provide() {
     return {
-      reload: this.reload
-    }
-  }
-}
+      reload: this.reload,
+    };
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -461,7 +501,7 @@ export default {
         .banner-title {
           font-weight: 600;
           font-size: 48px;
-          color: #FFFFFF;
+          color: #ffffff;
           line-height: 53px;
           margin-bottom: 26px;
 
@@ -479,7 +519,7 @@ export default {
           position: absolute;
           top: 15px;
           right: 20px;
-//font-size: 14px;
+          //font-size: 14px;
         }
 
         .banner-label {
@@ -488,7 +528,7 @@ export default {
           justify-content: center;
           align-items: center;
           font-size: 18px;
-          color: #FFFFFF;
+          color: #ffffff;
           line-height: 21px;
 
           span {
@@ -508,7 +548,6 @@ export default {
           //clear: both;
           //grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
         }
-
       }
 
       .banner-number {
@@ -517,7 +556,7 @@ export default {
         display: grid;
         grid-gap: 15px;
         clear: both;
-        grid-template-columns:  repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto; /* 根据内容自动调整行高 */
         place-items: center;
         width: 100%;
@@ -529,13 +568,12 @@ export default {
           border-right: 1px solid #ffffff; /* 网格项边框，模拟内部线 */
           padding: 10px; /* 网格项内边距 */
           text-align: center; /* 文本居中 */
-
         }
 
         .number-num {
           font-weight: bold;
           font-size: 32px;
-          color: #FFFFFF;
+          color: #ffffff;
           line-height: 53px;
           letter-spacing: 3px;
         }
@@ -549,14 +587,13 @@ export default {
       }
 
       @media screen and (max-width: 1280px) {
-
         .index-banner {
           height: calc(100% - 100px);
 
           .banner-title {
             font-weight: 600;
             font-size: 30px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 48px;
             margin-bottom: 30px;
           }
@@ -566,12 +603,11 @@ export default {
             flex-wrap: wrap;
             align-items: center;
             font-size: 14px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 21px;
 
             span {
               margin-right: 8px;
-
             }
 
             div {
@@ -584,7 +620,6 @@ export default {
             //clear: both;
             //grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
           }
-
         }
 
         .banner-number {
@@ -615,7 +650,7 @@ export default {
           .banner-title {
             font-weight: 600;
             font-size: 26px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 36px;
             margin-bottom: 30px;
           }
@@ -625,12 +660,11 @@ export default {
             flex-wrap: wrap;
             align-items: center;
             font-size: 12px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 21px;
 
             span {
               margin-right: 6px;
-
             }
 
             div {
@@ -649,17 +683,15 @@ export default {
         .banner-number {
           display: none;
         }
-
       }
     }
     .select-search {
-
       font-size: 18px;
       background-color: var(--theme_color);
       color: #ffffff;
       vertical-align: middle;
       display: table-cell;
-      border: 0px solid #DCDFE6;
+      border: 0px solid #dcdfe6;
       border-radius: 26px;
       padding: 8px 20px;
 
@@ -680,7 +712,7 @@ export default {
       z-index: 111;
 
       .search-Select {
-        background: #FFFFFF;
+        background: #ffffff;
         box-shadow: 0px 0px 5px 1px var(--shadow_color) inset;
         border-radius: 20px;
         padding: 15px;
@@ -708,7 +740,6 @@ export default {
       }
 
       //font-size: 20px;
-
     }
 
     .index-moudle {
@@ -747,7 +778,6 @@ export default {
           font-weight: 600;
           font-size: 18px;
           line-height: 24px;
-
         }
 
         .newMore {
@@ -870,19 +900,17 @@ export default {
           font-size: 16px;
           color: #666666;
           padding: 12px 20px;
-          background: #FFFFFF;
+          background: #ffffff;
           border-radius: 4px 4px 4px 4px;
           margin-bottom: 8px;
-          transition: color .15s linear;
+          transition: color 0.15s linear;
           margin-right: 10px;
 
           &:hover {
             color: var(--theme_color);
             cursor: pointer;
-
           }
         }
-
       }
 
       .message {
@@ -896,7 +924,7 @@ export default {
           font-size: 18px;
           text-align: left;
           box-sizing: border-box;
-          border-bottom: solid 4px #FFFFFF;
+          border-bottom: solid 4px #ffffff;
           cursor: pointer;
 
           &:hover {
@@ -929,7 +957,9 @@ export default {
             position: absolute;
             bottom: 20px;
             right: 30px;
-            font-size: 18px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
 
             a {
               color: var(--theme_color);
@@ -977,7 +1007,6 @@ export default {
         }
 
         .frind_name {
-
           font-size: 24px;
           color: #333333;
           line-height: 24px;
@@ -993,7 +1022,7 @@ export default {
     }
 
     .qa {
-      .qa-list{
+      .qa-list {
         width: 100%;
       }
       .qa-item {
@@ -1003,12 +1032,11 @@ export default {
 
         .qa-con {
           width: 48%;
-         padding:0 15px ;
+          padding: 0 15px;
 
           .qa-title {
             font-size: 30px;
             font-weight: 600;
-
           }
 
           ul {
@@ -1047,7 +1075,7 @@ export default {
           }
         }
       }
-      .qa-select{
+      .qa-select {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1059,22 +1087,21 @@ export default {
           text-align: left;
           max-width: 800px;
         }
-        .qa-select-title{
+        .qa-select-title {
           font-size: 24px;
           font-weight: 600;
           margin-bottom: 8px;
-
         }
-        .qa-select-enter{
+        .qa-select-enter {
           font-size: 16px;
           margin-bottom: 8px;
         }
-        .qa-select-item{
+        .qa-select-item {
           display: flex;
           height: 40px;
         }
 
-        .el-input{
+        .el-input {
           flex: 1;
           margin-right: 20px;
         }
@@ -1085,7 +1112,7 @@ export default {
 </style>
 <style lang="less">
 #index {
-  .vedio{
+  .vedio {
     .el-input {
       width: 740px;
       height: 68px;
@@ -1101,11 +1128,10 @@ export default {
     }
     .search-middleBox {
       .el-input__inner {
-        background-color: #FFF;
+        background-color: #fff;
         border-radius: 20px;
       }
     }
-
   }
 
   .newMessage {
@@ -1157,10 +1183,8 @@ export default {
         //height: 20px;
 
         //color: var(--txt_color);
-
       }
     }
-
   }
   @media screen and (max-width: 1000px) {
     .index-moudle {
@@ -1170,7 +1194,7 @@ export default {
     #features .name {
       margin-bottom: 20px !important;
     }
-    .vedio{
+    .vedio {
       .el-input {
         width: 300px;
         height: 48px;
@@ -1186,9 +1210,7 @@ export default {
         li {
           font-size: 12px !important;
           padding: 4px 6px !important;
-
         }
-
       }
 
       .select-search {
@@ -1197,8 +1219,6 @@ export default {
         font-size: 14px !important;
       }
     }
-
-
 
     .newMessage {
       img {
@@ -1235,17 +1255,17 @@ export default {
       }
     }
 
-    .qa{
-      .qa-item{
+    .qa {
+      .qa-item {
         flex-direction: column;
-align-items: center;
-        .qa-con{
+        align-items: center;
+        .qa-con {
           width: 100% !important;
-          .item-con-title{
+          .item-con-title {
             font-size: 20px !important;
             -webkit-line-clamp: 3 !important;
           }
-          .item-con-overview{
+          .item-con-overview {
             font-size: 16px !important;
             white-space: wrap !important;
             display: -webkit-box !important;
@@ -1253,12 +1273,10 @@ align-items: center;
             word-break: break-all !important; /* break-all(允许在单词内换行。) */
             -webkit-box-orient: vertical !important;
             -webkit-line-clamp: 2;
-
           }
         }
       }
     }
   }
-
 }
 </style>

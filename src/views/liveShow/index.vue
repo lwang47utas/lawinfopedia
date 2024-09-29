@@ -1,7 +1,12 @@
 <template>
   <div id="showList">
-    <message-aside :newsUrl="newsUrl" :msg-list="msgList"
-                   :isSelectObj="isSelectObj" @liActive="liActiveFn" @selectChange="selectChangeFn"></message-aside>
+    <message-aside
+      :newsUrl="newsUrl"
+      :msg-list="msgList"
+      :isSelectObj="isSelectObj"
+      @liActive="liActiveFn"
+      @selectChange="selectChangeFn"
+    ></message-aside>
     <div class="livePlay">
       <div class="content">
         <el-breadcrumb>
@@ -19,39 +24,70 @@
         <div class="livePlay-title">
           <div class="before"></div>
           <div>{{ newsUrl }}</div>
-
         </div>
         <div class="showList-introduce">
-
           <div>Get answers from experienced lawyers</div>
-          <p>Have questions about legal issues? Our answers come from attorneys selected to the Super Lawyers list. Each
-            lawyer on the list is among the top 5% in their state and undergoes a rigorous process leading to
-            selection.</p>
+          <p>
+            Have questions about legal issues? Our answers come from attorneys
+            selected to the Super Lawyers list. Each lawyer on the list is among
+            the top 5% in their state and undergoes a rigorous process leading
+            to selection.
+          </p>
 
           <div>Easily find information</div>
-          <p> We’ve brought both your legal questions and answers from premier attorneys together in one place. On this
-            page, you will find multiple search options so you can read about the legal issues that matter to you. Start
-            your research with the legal issue, state, recently answered, or common question options.
-          </p></div>
-        <div class="goToLink">
-          <router-link to="/answers/legal-issue" tag="span">Answers by legal issue ></router-link>
-          <router-link to="/answers/state" tag="span"> Answers by state ></router-link>
-          <router-link to="" tag="span"> Recently legal questions and answers ></router-link>
+          <p>
+            We’ve brought both your legal questions and answers from premier
+            attorneys together in one place. On this page, you will find
+            multiple search options so you can read about the legal issues that
+            matter to you. Start your research with the legal issue, state,
+            recently answered, or common question options.
+          </p>
         </div>
-        <div v-for="(item,index) in typeList" :key="index" class="typeList">
+        <!--<div class="goToLink">
+          <router-link to="/answers/legal-issue" tag="span"
+            >Answers by legal issue ></router-link
+          >
+          <router-link to="/answers/state" tag="span">
+            Answers by state ></router-link
+          >
+          <router-link to="" tag="span">
+            Recently legal questions and answers ></router-link
+          >
+        </div>-->
+        <div v-for="(item, index) in typeList" :key="index" class="typeList">
           <!--          {{item}}-->
-          <div class="typeList-name"> {{ item.name }}</div>
+          <div class="typeList-name">
+            <router-link :to="item.path" tag="span">
+              {{ item.name }} ></router-link
+            >
+          </div>
 
-          <div class="typeList-lists grid-four" :class="item.name==='Answers by state'?'typeList1':''">
-            <div  v-for="(item1,index1) in item.list" :key="index1" @click="toType(item.path,item1)">{{ item1 }}</div>
-            <router-link :to="item.path" tag="div" class="typeList-lists-more">view more ></router-link>
+          <div
+            class="typeList-lists grid-four"
+            :class="item.name === 'Answers by state' ? 'typeList1' : ''"
+          >
+            <div
+              v-for="(item1, index1) in item.list"
+              :key="index1"
+              @click="toType(item.path, item1)"
+            >
+              {{ item1 }}
+            </div>
+            <router-link :to="item.path" tag="div" class="typeList-lists-more"
+              >view more ></router-link
+            >
           </div>
         </div>
         <div class="typeList">
-          <div class="typeList-name"> Answers list</div>
+          <div class="typeList-name">Common Answer List</div>
           <div class="qaList">
-            <div v-for="(item,index) in answerList " :key="index" class="qa-item" @click="readFn(item)">
-              <img :src="item.img" alt="">
+            <div
+              v-for="(item, index) in answerList"
+              :key="index"
+              class="qa-item"
+              @click="readFn(item)"
+            >
+              <img :src="item.img" alt="" />
               <div>
                 <div class="qa-title mle">{{ item.title }}</div>
                 <div class="qa-overview mle">{{ item.overview }}</div>
@@ -62,46 +98,49 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
-import messageAside from 'comps/messageAside/messageAside.vue'
-import { getPetArticleList } from '@/libs/utils'
+import messageAside from "comps/messageAside/messageAside.vue";
+import { getPetArticleList } from "@/libs/utils";
 
-import { getLawyerArticleType, getLegalIssuesAndStates, getLawyerRecommend } from '@/api/qa.js'
-import QaList from './qaList.vue'
+import {
+  getLawyerArticleType,
+  getLegalIssuesAndStates,
+  getLawyerRecommend,
+} from "@/api/qa.js";
+import QaList from "./qaList.vue";
 
 export default {
   components: {
     QaList,
-    messageAside
+    messageAside,
   },
-  data () {
+  data() {
     return {
-      typeValue: 'dog',
-      num: '--',
+      typeValue: "dog",
+      num: "--",
       typeList: {
         legalIssues: {
-          name: 'Answers by legal issue',
-          path: '/answers/legal-issue',
-          list: []
+          name: "Answers by legal issue",
+          path: "/answers/legal-issue",
+          list: [],
         },
         states: {
-          name: 'Answers by state',
-          path: '/answers/state',
-          list: []
-        }
+          name: "Answers by state",
+          path: "/answers/state",
+          list: [],
+        },
       },
       msgList: [
         {
-          img: require('../../assets/image/about/bg.png'),
-          title: '10 Most Popular Dog Breeds in 2024'
+          img: require("../../assets/image/about/bg.png"),
+          title: "10 Most Popular Dog Breeds in 2024",
         },
         {
-          img: require('../../assets/image/about/bg.png'),
-          title: '10 Most Popular Dog Breeds in 2024'
-        }
+          img: require("../../assets/image/about/bg.png"),
+          title: "10 Most Popular Dog Breeds in 2024",
+        },
       ],
       selectObj: {},
       isSelectObj: {},
@@ -109,61 +148,61 @@ export default {
       answerList: [],
       pageNum: 1,
       pageSize: 12,
-      total: '',
-      search: '',
-      newsUrl: 'liveShow'
-    }
+      total: "",
+      search: "",
+      newsUrl: "liveShow",
+    };
   },
   watch: {
-    $route (to, from) {
-      this.newsUrl = to.name
+    $route(to, from) {
+      this.newsUrl = to.name;
       // this.newsUrl === 'cat' ? this.getCat() : this.getDog()
       // this.getTypeFn()
-    }
+    },
   },
-  async mounted () {
+  async mounted() {
     // this.typeValue = this.$route.name === 'By legal issue' ? 'legalIssues' : 'states'
-    this.newsUrl = this.$route.name
-    this.msgList = await getPetArticleList()
-    this.init()
-
+    this.newsUrl = this.$route.name;
+    this.msgList = await getPetArticleList();
+    this.init();
   },
   methods: {
-    init () {
-      this.getTypeFn('legalIssues')
-      this.getTypeFn('states')
-      getLawyerRecommend().then(res => {
-        this.answerList = res.data
-      })
+    init() {
+      this.getTypeFn("legalIssues");
+      this.getTypeFn("states");
+      getLawyerRecommend().then((res) => {
+        this.answerList = res.data;
+      });
     },
-    getTypeFn (msg) {
-      getLawyerArticleType({ msg }).then(res => {
-        this.typeList[msg].list = res.data[msg].splice(0, 15)
-      })
-    },
-
-    selectChangeFn (item) {
-      this.pageNum = 1
-      this.showList = []
-      this.isSelectObj = item
-      this.getPetList(item)
+    getTypeFn(msg) {
+      getLawyerArticleType({ msg }).then((res) => {
+        this.typeList[msg].list = res.data[msg].splice(0, 15);
+      });
     },
 
-    liActiveFn (item) {
-      console.log(item)
+    selectChangeFn(item) {
+      this.pageNum = 1;
+      this.showList = [];
+      this.isSelectObj = item;
+      this.getPetList(item);
+    },
+
+    liActiveFn(item) {
+      console.log(item);
     },
     // 阅读文章
-    readFn (item) {
+    readFn(item) {
       // console.log(item.uid,1222222222222222222222222222222222222)
-      this.$router.push({ path: `/answers/legal-issue/${this.$route.params.issue}/${item.uid}` })
+      this.$router.push({
+        path: `/answers/legal-issue/${this.$route.params.issue}/${item.uid}`,
+      });
     },
     // 跳转类型
-    toType (path, type) {
-      this.$router.push({ path: path + '/' + type })
-    }
-
-  }
-}
+    toType(path, type) {
+      this.$router.push({ path: path + "/" + type });
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -207,7 +246,6 @@ export default {
         text-align: left;
         box-shadow: 0px 3px 15px 1px rgba(0, 0, 0, 0.08);
         overflow: hidden;
-
       }
     }
   }
@@ -234,6 +272,7 @@ export default {
       font-size: 24px;
       font-weight: bold;
       margin-bottom: 20px;
+      cursor: pointer;
     }
 
     .typeList-lists {
@@ -249,8 +288,8 @@ export default {
 
       .typeList-lists-more {
         font-weight: bold;
+        font-size: 22px;
       }
-
     }
 
     .qaList {
@@ -273,14 +312,12 @@ export default {
         .qa-title {
           font-size: 22px;
           color: var(--txt_color);
-
         }
 
         .qa-overview {
           font-size: 16px;
           color: #666666;
           margin-top: 10px;
-
         }
       }
     }
@@ -336,7 +373,6 @@ export default {
   }
 
   .livePlay-lists {
-
     .livePlay-list {
       width: 100%;
       box-sizing: border-box;
@@ -411,7 +447,6 @@ export default {
 
               &:nth-child(1) {
                 margin-right: 10px;
-
               }
             }
           }
@@ -430,7 +465,6 @@ export default {
       text-align: right;
       padding: 15px;
       font-size: 20px;
-
     }
   }
 }
@@ -441,24 +475,23 @@ export default {
   }
   @media screen and (max-width: 800px) {
     flex-direction: column-reverse;
-     .typeList .qaList .qa-item img[data-v-4514bbe6] {
+    .typeList .qaList .qa-item img[data-v-4514bbe6] {
       width: 140px;
     }
-    .goToLink{
-      span{
+    .goToLink {
+      span {
         display: block;
         margin-bottom: 5px;
       }
     }
 
-          .typeList1{
-            grid-template-columns: 1fr 1fr !important;
-          }
+    .typeList1 {
+      grid-template-columns: 1fr 1fr !important;
+    }
 
     //.grid-four{
     //  grid-template-columns: 1fr 1fr !important;
     //}
-
   }
 }
 </style>
