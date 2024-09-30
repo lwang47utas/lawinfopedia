@@ -1,6 +1,5 @@
 <template>
   <div id="index">
-
     <div class="index">
       <div class="vedio">
         <!-- <video
@@ -30,113 +29,139 @@
         <!--          <source src="@/assets/vedio/官网抬头视频.mp4" type="video/mp4" />-->
         <!--        </video>-->
         <div class="image-container">
-          <img decoding="async" id="image" src="../../assets/image/index/banner-desktop.webp" alt="">
+          <img
+            decoding="async"
+            id="image"
+            src="../../assets/image/index/banner-desktop.webp"
+            alt=""
+          />
         </div>
         <div class="index-banner">
-          <div class="banner-title">{{ $t('header.headerTitle1') }} <span>{{ $t('index.header.headerTitle2') }}</span> {{ $t('index.header.headerTitle3') }}</div>
+          <div class="banner-title">
+            {{ $t("header.headerTitle1") }}
+            <span>{{ $t("index.header.headerTitle2") }}</span>
+            {{ $t("index.header.headerTitle3") }}
+          </div>
           <div class="banner-select">
-            <el-input placeholder="search" v-model="searchValue">
-            </el-input>
+            <el-input placeholder="search" v-model="searchValue"> </el-input>
             <div class="select-search" @click="searchFn(null)">search</div>
           </div>
-          <div class="banner-label"><span>Trending:</span>
+          <div class="banner-label">
+            <span>Trending:</span>
             <div @click="searchFn('legal aid')">legal aid</div>
             <div @click="searchFn('accidental lawyer')">accidental lawyer</div>
             <div @click="searchFn('get lawyer help')">get lawyer help</div>
             <div @click="searchFn('bankruptcy lawyer')">bankruptcy lawyer</div>
           </div>
-
         </div>
         <div class="banner-number">
-          <div v-for="(item,index) in allList.numList" :key="index">
+          <div v-for="(item, index) in allList.numList" :key="index">
             <div class="number-num">{{ item.num }}</div>
             <div class="number-content">{{ item.content }}</div>
           </div>
         </div>
-
       </div>
       <div class="index-moudle show-list">
-        <features name="Choose an office from the following categories to help you resolve legal problems." url="/dog"
-                  title="Legal Offices Nearby">
+        <features
+          name="Choose an office from the following categories to help you resolve legal problems."
+          url="/dog"
+          title="Legal Offices Nearby"
+        >
           <template v-slot:two>
             <ul class="index-moudle1 index-moudle-ul content-width grid-three">
-
               <li
                 v-for="(item, index) in allList.produceList"
                 :key="index"
                 class="curser-hover"
               >
                 <router-link :to="`/${item.categoryItem.replace(/\s+/g, '-')}`">
-                  <img :src="item.img" alt="">
+                  <img :src="item.img" alt="" />
                   <div>
                     <div class="newTitle mle">{{ item.categoryItem }}</div>
                     <div class="newMore">
                       {{ item.total }}
                       <svg-icon icon-class="right"></svg-icon>
-
                     </div>
                   </div>
                 </router-link>
               </li>
 
-<!--              <li class="curser-hover toMore">-->
-<!--                <RouterLink to="/Pro-Bono-Offices">-->
-<!--                  <div class="module1-title">Learn More</div>-->
-<!--                  <svg-icon icon-class="right"></svg-icon>-->
-<!--                </RouterLink>-->
-<!--              </li>-->
+              <!--              <li class="curser-hover toMore">-->
+              <!--                <RouterLink to="/Pro-Bono-Offices">-->
+              <!--                  <div class="module1-title">Learn More</div>-->
+              <!--                  <svg-icon icon-class="right"></svg-icon>-->
+              <!--                </RouterLink>-->
+              <!--              </li>-->
             </ul>
           </template>
         </features>
       </div>
       <div class="index-moudle newMessage">
-        <features name="Read the following articles for free legal suggestions and resources." url="/news"
-                  title="Free Legal Advice">
+        <features
+          name="Read the following articles for free legal suggestions and resources."
+          url="/news"
+          title="Free Legal Advice"
+        >
           <template v-slot:one>
-            <ul class="choose-list  content-width ">
-              <router-link :to="{path:'/news',query:{type:'Pro Bono Services'}}">
-                <li> Pro Bono Services</li>
+            <ul class="choose-list content-width">
+              <router-link
+                :to="{ path: '/news', query: { type: 'Pro Bono Services' } }"
+              >
+                <li>Pro Bono Services</li>
               </router-link>
-              <router-link :to="{path:'/news',query:{type:'Unemployment Benefits'}}">
-                <li> Unemployment Benefits</li>
+              <router-link
+                :to="{
+                  path: '/news',
+                  query: { type: 'Unemployment Benefits' },
+                }"
+              >
+                <li>Unemployment Benefits</li>
               </router-link>
-              <router-link :to="{path:'/news',query:{type:'Free Legal Aid'}}">
-                <li> Free Legal Aid</li>
+              <router-link
+                :to="{ path: '/news', query: { type: 'Free Legal Aid' } }"
+              >
+                <li>Free Legal Aid</li>
               </router-link>
-              <router-link :to="{path:'/news',query:{type:'Retaining a Lawyer'}}">
-                <li> Retaining a Lawyer</li>
+              <router-link
+                :to="{ path: '/news', query: { type: 'Retaining a Lawyer' } }"
+              >
+                <li>Retaining a Lawyer</li>
               </router-link>
-              <router-link :to="{path:'/news',query:{type:'ACLU'}}">
-                <li> ACLU</li>
+              <router-link :to="{ path: '/news', query: { type: 'ACLU' } }">
+                <li>ACLU</li>
               </router-link>
-              <router-link :to="{path:'/news',query:{type:'Types of Lawyers'}}">
-                <li> Types of Lawyers</li>
+              <router-link
+                :to="{ path: '/news', query: { type: 'Types of Lawyers' } }"
+              >
+                <li>Types of Lawyers</li>
               </router-link>
             </ul>
           </template>
           <template v-slot:two>
             <ul class="message index-moudle-ul content-width grid-three">
-
-              <router-link v-for="(item, index) in allList.messageList.newsList" tag="li" :key="index" :to="`/news/content/${item.uid}`">
-                <img :src=" item.img" alt="">
+              <router-link
+                v-for="(item, index) in allList.messageList.newsList"
+                tag="li"
+                :key="index"
+                :to="`/news/content/${item.uid}`"
+              >
+                <img :src="item.img" alt="" />
                 <div>
                   <div class="newTitle mle">{{ item.title }}</div>
-                  <span v-for="(item1,index1) in item.label" :key="index1">{{ item1 }}</span>
+                  <span v-for="(item1, index1) in item.label" :key="index1">{{
+                    item1
+                  }}</span>
                   <div class="newMore">
-
-                    <div>
-                      Read More
-                    </div>
-
+                    <div>Read More</div>
                   </div>
                 </div>
               </router-link>
-
             </ul>
           </template>
-
         </features>
-        <router-link to="/news" tag="div" class="newMessage-more">More legal advices</router-link>
+        <router-link to="/news" tag="div" class="newMessage-more"
+          >More legal advices</router-link
+        >
       </div>
       <div class="index-moudle friend">
         <features
@@ -145,26 +170,17 @@
           title="AboutLawinfopedia？"
         >
           <template v-slot:one>
-            <ul class=" index-moudle-ul content-width grid-three">
-              <li
-                v-for="(item, index) in allList.serviceList"
-                :key="index"
-              >
-
+            <ul class="index-moudle-ul content-width grid-three">
+              <li v-for="(item, index) in allList.serviceList" :key="index">
                 <div>
-                  <img
-                    :src="item.img"
-                    alt=""
-                  >
+                  <img :src="item.img" alt="" />
                 </div>
                 <div class="frind_name">{{ item.name }}</div>
                 <div class="friend_title">{{ item.title }}</div>
-
               </li>
             </ul>
           </template>
         </features>
-
       </div>
       <footer-com></footer-com>
     </div>
@@ -172,135 +188,136 @@
 </template>
 
 <script>
-import { allList } from './js/index.js'
+import { allList } from "./js/index.js";
 
-import features from '../../components/features/features.vue'
+import features from "../../components/features/features.vue";
 // import Shu from '../../components/moudle/shu.vue'
-import FooterCom from '../../components/footerCom/footerCom.vue'
+import FooterCom from "../../components/footerCom/footerCom.vue";
 
-import { articleRandom, getType } from '@/api/index'
+import { articleRandom, getType } from "@/api/index";
 
 export default {
   components: {
     features,
-    FooterCom
+    FooterCom,
   },
-  data () {
+  data() {
     return {
       // 所有列表文字
       allList,
       // 鼠标悬浮在哪个上面
-      mouseName: '',
+      mouseName: "",
       mouseindex: null,
       // 防抖
       timer: null,
-      versionUrl: 'index',
+      versionUrl: "index",
       isRouterAlive: true,
       dogTotal: 0,
       catTotal: 0,
       typeList: [
         {
-          value: 'dog',
-          label: 'dog'
-        }, {
-          value: 'cat',
-          label: 'cat'
-        }
+          value: "dog",
+          label: "dog",
+        },
+        {
+          value: "cat",
+          label: "cat",
+        },
       ],
 
       searchList: {},
-      searchValue: ''
-    }
+      searchValue: "",
+    };
   },
   watch: {
-    $route (to, from) {
-      this.versionUrl = to.name
-    }
+    $route(to, from) {
+      this.versionUrl = to.name;
+    },
   },
-  mounted () {
-    this.getImg()
-    this.versionUrl = this.$route.name
-    this.randomFn()
-    this.getTypeList()
+  mounted() {
+    this.getImg();
+    this.versionUrl = this.$route.name;
+    this.randomFn();
+    this.getTypeList();
   },
   methods: {
-    getImg () {
+    getImg() {
       // 获取图片元素
-      var imgElement = document.getElementById('image')
+      var imgElement = document.getElementById("image");
 
-      imgElement.addEventListener('load', function () {
+      imgElement.addEventListener("load", function () {
         // 图片加载完成后，可以在这里添加逻辑，比如移除白色背景
-        this.style.backgroundColor = 'transparent' // 设置背景色为透明
-      })
-      imgElement.addEventListener('error', function () {
+        this.style.backgroundColor = "transparent"; // 设置背景色为透明
+      });
+      imgElement.addEventListener("error", function () {
         // 图片加载失败时的处理逻辑
-        this.style.backgroundColor = 'white' // 可以继续显示白色背景或其他提示
-      })
+        this.style.backgroundColor = "white"; // 可以继续显示白色背景或其他提示
+      });
     },
     // 鼠标经过离开
-    mouseover (item, index) {
-      this.mouseindex = index
-      this.mouseName = item
+    mouseover(item, index) {
+      this.mouseindex = index;
+      this.mouseName = item;
       // fangdou(((this.mouseindex = index), (this.mouseName = item)), 1000)
     },
-    mouseout (item, index) {
-      this.mouseindex = ''
-      this.mouseName = ''
+    mouseout(item, index) {
+      this.mouseindex = "";
+      this.mouseName = "";
       // fangdou((this.mouseindex = '')), 1000)
     },
     // 立即开始
-    toBegin () {
-      this.$router.push('/service')
-      this.reload()
+    toBegin() {
+      this.$router.push("/service");
+      this.reload();
     },
 
-    reload () {
-      this.isRouterAlive = false
+    reload() {
+      this.isRouterAlive = false;
       this.$nextTick(function () {
-        this.isRouterAlive = true
-      })
+        this.isRouterAlive = true;
+      });
     },
     // typeChange(){
     //
     // },
     // 获取类型
-    getTypeList () {
-      getType().then(res => {
-        this.allList.produceList = res.data
-      })
+    getTypeList() {
+      getType().then((res) => {
+        this.allList.produceList = res.data;
+      });
     },
     // 推荐猫狗文章
-    randomFn () {
-      articleRandom({ type: 1 }).then(res => {
-        this.allList.messageList.newsList = res.data.lawyerArticleTypeDTOList
-      })
+    randomFn() {
+      articleRandom({ type: 1 }).then((res) => {
+        this.allList.messageList.newsList = res.data.lawyerArticleTypeDTOList;
+      });
     },
     // 点击查询
-    searchType () {
+    searchType() {
       this.$router.push({
         // name: 'newsContent',
         path: `/${this.searchValue.typeValue}`,
-        query: { obj: JSON.stringify(this.searchValue) }
-      })
+        query: { obj: JSON.stringify(this.searchValue) },
+      });
     },
     // 点击搜索
-    searchFn (item) {
+    searchFn(item) {
       // console.log(item)
-      this.searchValue = item ? item : this.searchValue
+      this.searchValue = item ? item : this.searchValue;
       this.$router.push({
         // name: 'newsContent',
-        path: '/search',
-        query: { msg: this.searchValue }
-      })
-    }
+        path: "/search",
+        query: { msg: this.searchValue },
+      });
+    },
   },
 
-  provide () {
+  provide() {
     return {
-      reload: this.reload
-    }
-  }
-}
+      reload: this.reload,
+    };
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -355,7 +372,7 @@ export default {
         .banner-title {
           font-weight: 600;
           font-size: 48px;
-          color: #FFFFFF;
+          color: #ffffff;
           line-height: 53px;
           margin-bottom: 26px;
 
@@ -379,7 +396,7 @@ export default {
           color: #ffffff;
           vertical-align: middle;
           display: table-cell;
-          border: 0px solid #DCDFE6;
+          border: 0px solid #dcdfe6;
           border-radius: 26px;
           padding: 8px 20px;
 
@@ -396,7 +413,7 @@ export default {
           justify-content: center;
           align-items: center;
           font-size: 18px;
-          color: #FFFFFF;
+          color: #ffffff;
           line-height: 21px;
 
           span {
@@ -416,7 +433,6 @@ export default {
           //clear: both;
           //grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
         }
-
       }
 
       .banner-number {
@@ -425,7 +441,7 @@ export default {
         display: grid;
         grid-gap: 15px;
         clear: both;
-        grid-template-columns:  repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto; /* 根据内容自动调整行高 */
         place-items: center;
         width: 100%;
@@ -437,13 +453,12 @@ export default {
           border-right: 1px solid #ffffff; /* 网格项边框，模拟内部线 */
           padding: 10px; /* 网格项内边距 */
           text-align: center; /* 文本居中 */
-
         }
 
         .number-num {
           font-weight: bold;
           font-size: 32px;
-          color: #FFFFFF;
+          color: #ffffff;
           line-height: 53px;
           letter-spacing: 3px;
         }
@@ -457,30 +472,27 @@ export default {
       }
 
       @media screen and (max-width: 1280px) {
-
         .index-banner {
           height: calc(100% - 100px);
 
           .banner-title {
             font-weight: 600;
             font-size: 30px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 48px;
             margin-bottom: 30px;
           }
-
 
           .banner-label {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             font-size: 14px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 21px;
 
             span {
               margin-right: 8px;
-
             }
 
             div {
@@ -493,7 +505,6 @@ export default {
             //clear: both;
             //grid-template-columns: repeat(auto-fit, minmax(1px, 1fr));
           }
-
         }
 
         .banner-number {
@@ -524,7 +535,7 @@ export default {
           .banner-title {
             font-weight: 600;
             font-size: 26px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 36px;
             margin-bottom: 30px;
           }
@@ -534,13 +545,11 @@ export default {
             flex-wrap: wrap;
             align-items: center;
             font-size: 12px;
-            color: #FFFFFF;
+            color: #ffffff;
             line-height: 21px;
-
 
             span {
               margin-right: 6px;
-
             }
 
             div {
@@ -559,7 +568,6 @@ export default {
         .banner-number {
           display: none;
         }
-
       }
     }
 
@@ -574,7 +582,7 @@ export default {
       z-index: 111;
 
       .search-Select {
-        background: #FFFFFF;
+        background: #ffffff;
         box-shadow: 0px 0px 5px 1px var(--shadow_color) inset;
         border-radius: 20px;
         padding: 15px;
@@ -602,7 +610,6 @@ export default {
       }
 
       //font-size: 20px;
-
     }
 
     .index-moudle {
@@ -642,7 +649,6 @@ export default {
           font-weight: 600;
           font-size: 18px;
           line-height: 24px;
-
         }
 
         .newMore {
@@ -764,19 +770,17 @@ export default {
           font-size: 16px;
           color: #666666;
           padding: 12px 20px;
-          background: #FFFFFF;
+          background: #ffffff;
           border-radius: 4px 4px 4px 4px;
           margin-bottom: 8px;
-          transition: color .15s linear;
+          transition: color 0.15s linear;
           margin-right: 10px;
 
           &:hover {
             color: var(--theme_color);
             cursor: pointer;
-
           }
         }
-
       }
       .message {
         li {
@@ -789,7 +793,7 @@ export default {
           font-size: 18px;
           text-align: left;
           box-sizing: border-box;
-          border-bottom: solid 4px #FFFFFF;
+          border-bottom: solid 4px #ffffff;
           cursor: pointer;
 
           &:hover {
@@ -869,7 +873,6 @@ export default {
         }
 
         .frind_name {
-
           font-size: 24px;
           color: #333333;
           line-height: 24px;
@@ -884,8 +887,8 @@ export default {
       }
     }
 
-    .qa{
-      .qa-item{
+    .qa {
+      .qa-item {
         display: flex;
       }
     }
@@ -896,7 +899,7 @@ export default {
 #index {
   .search-middleBox {
     .el-input__inner {
-      background-color: #FFF;
+      background-color: #fff;
       border-radius: 20px;
     }
   }
@@ -909,7 +912,6 @@ export default {
     background-color: #ffffff;
     margin-bottom: 30px;
   }
-
 
   .el-input__inner {
     border: 0px;
@@ -959,17 +961,14 @@ export default {
         //height: 20px;
 
         //color: var(--txt_color);
-
       }
     }
-
-
   }
   @media screen and (max-width: 1000px) {
-    .index-moudle{
+    .index-moudle {
       padding: 48px 20px !important;
     }
-    #features .name{
+    #features .name {
       margin-bottom: 20px !important;
     }
     .el-input {
@@ -986,44 +985,41 @@ export default {
       li {
         font-size: 12px !important;
         padding: 4px 6px !important;
-
       }
-
     }
     .select-search {
       top: 5px !important;
       right: 10px !important;
     }
-    .newMessage{
-      img{
+    .newMessage {
+      img {
         width: 140px !important;
         height: 140px !important;
       }
-      .newMessage-more{
+      .newMessage-more {
         width: 200px !important;
         height: 50px !important;
         line-height: 50px !important;
         margin-top: 20px !important;
       }
     }
-    .friend{
+    .friend {
       ul {
         li {
           padding: 12px;
-          img{
+          img {
             width: 48px !important;
             height: 48px !important;
           }
-          .frind_name{
+          .frind_name {
             margin-bottom: 24px !important;
           }
-          .friend_title{
+          .friend_title {
             font-size: 16px !important;
           }
         }
       }
     }
   }
-
 }
 </style>

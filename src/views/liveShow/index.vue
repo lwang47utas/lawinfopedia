@@ -1,12 +1,5 @@
 <template>
   <div id="showList">
-    <message-aside
-      :newsUrl="newsUrl"
-      :msg-list="msgList"
-      :isSelectObj="isSelectObj"
-      @liActive="liActiveFn"
-      @selectChange="selectChangeFn"
-    ></message-aside>
     <div class="livePlay">
       <div class="content">
         <el-breadcrumb>
@@ -97,6 +90,13 @@
         </div>
       </div>
     </div>
+    <message-aside
+      :newsUrl="newsUrl"
+      :msg-list="msgList"
+      :isSelectObj="isSelectObj"
+      @liActive="liActiveFn"
+      @selectChange="selectChangeFn"
+    ></message-aside>
   </div>
 </template>
 
@@ -305,7 +305,9 @@ export default {
         }
 
         img {
-          width: 200px;
+          width: 115px;
+          height: 145px;
+          border-radius: 8px;
           margin-right: 20px;
         }
 

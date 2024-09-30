@@ -3,40 +3,59 @@
     <div class="aside-tool aside-div">
       <!--      <h1>Find a Furry Friend</h1>-->
       <div class="aside-tool-list">
-        <div class="aside-tool-con">
+        <div class="aside-tool-con tall">
           <router-link to="/Pro-Bono-Offices">
             <div class="aside-tool-item">
-              <span class="tool-text"> {{$t('menu.menu0.title')}}</span>
-
+              <span class="tool-text"> {{ $t("menu.menu0.title") }}</span>
             </div>
           </router-link>
-
         </div>
         <div class="aside-tool-con">
           <router-link to="/news">
             <div class="aside-tool-item">
-              <span class="tool-text">
-               {{$t('menu.menu1.title')}} </span>
+              <span class="tool-text"> {{ $t("menu.menu1.title") }} </span>
+            </div>
+          </router-link>
+        </div>
+        <div class="aside-tool-con">
+          <router-link to="/answers">
+            <div class="aside-tool-item">
+              <span class="tool-text"> {{ $t("menu.menu2.title") }} </span>
             </div>
           </router-link>
         </div>
       </div>
     </div>
     <div class="aside-filter aside-div" v-if="liList">
-      <h1>{{ $t('aside.filter') }}</h1>
-      <ul class="filter-box-options" style="display: block;">
-        <li @click="liActive({label:'ALL'})" :class="$route.params.type.replace(/-/g, ' ')  === 'ALL'?'active' : '' "><span>All</span></li>
-        <li v-for="(item,index) in liList" :key="index" @click="liActive(item)"
-            :class="$route.params.type.replace(/-/g, ' ') === item.label?'active':'' ">
-          <span>{{$t(`breadcrumb.${item.label}.title`)}} {{ item?.count }}</span>
+      <h1>{{ $t("aside.filter") }}</h1>
+      <ul class="filter-box-options" style="display: block">
+        <li
+          @click="liActive({ label: 'ALL' })"
+          :class="
+            $route.params.type.replace(/-/g, ' ') === 'ALL' ? 'active' : ''
+          "
+        >
+          <span>All</span>
+        </li>
+        <li
+          v-for="(item, index) in liList"
+          :key="index"
+          @click="liActive(item)"
+          :class="
+            $route.params.type.replace(/-/g, ' ') === item.label ? 'active' : ''
+          "
+        >
+          <span
+            >{{ $t(`breadcrumb.${item.label}.title`) }} {{ item?.count }}</span
+          >
           <!--                <a href="?category_filter=all-about-foster-care&amp;term=">{{ item.name }}({{ item.num }})</a>-->
           <span></span>
         </li>
       </ul>
     </div>
     <div class="aside-select aside-div" v-if="selectObj">
-      <h1>{{$t('aside.filter')}}</h1>
-      <div v-for="(item,key) in selectObj" :key="key" class="selectObj-list">
+      <h1>{{ $t("aside.filter") }}</h1>
+      <div v-for="(item, key) in selectObj" :key="key" class="selectObj-list">
         <h3>
           {{ key }}
         </h3>
@@ -46,10 +65,9 @@
           collapse-tags
           placeholder="choose"
           @change="selectChange"
-
         >
           <el-option
-            v-for="(item1,index1) in item"
+            v-for="(item1, index1) in item"
             :key="index1"
             :label="item1"
             :value="item1"
@@ -63,10 +81,15 @@
       </div>
     </div>
     <div class="aside-msg aside-div" v-if="msgList">
-      <h1>{{$t('aside.msg')}} </h1>
-      <div class="aside-msg-con" v-for="(item,index) in msgList" :key="index" @click="msgClick(item)">
+      <h1>{{ $t("aside.msg") }}</h1>
+      <div
+        class="aside-msg-con"
+        v-for="(item, index) in msgList"
+        :key="index"
+        @click="msgClick(item)"
+      >
         <div class="aside-msg-item">
-          <img :src="item.img" alt="">
+          <img :src="item.img" alt="" />
           <div class="aside-msg-itemLabel">
             <span>{{ item.label[0] }}</span>
             <!--            <span v-for="(item1,index1) in item.label" :key="index1"> {{ item1 }}</span>-->
@@ -81,15 +104,21 @@
       </div>
     </div>
     <div class="aside-msg aside-div" v-if="petList">
-      <h1>{{$t('aside.msg')}}</h1>
-      <div class="aside-msg-con" v-for="(item,index) in petList" :key="index" @click="petClick(item)">
+      <h1>{{ $t("aside.msg") }}</h1>
+      <div
+        class="aside-msg-con"
+        v-for="(item, index) in petList"
+        :key="index"
+        @click="petClick(item)"
+      >
         <div class="aside-msg-item">
-          <img :src="item.img" alt="">
+          <img :src="item.img" alt="" />
           <div class="aside-msg-itemTitle">
             <svg-icon :icon-class="item.gender"></svg-icon>
             {{ item.name }}
           </div>
-          <div class="aside-msg-itemLabel"><span>{{ item.age }}</span> <span>{{ item.size }}</span>
+          <div class="aside-msg-itemLabel">
+            <span>{{ item.age }}</span> <span>{{ item.size }}</span>
           </div>
         </div>
       </div>
@@ -97,21 +126,28 @@
   </div>
 </template>
 <script>
-
 export default {
-  props: ['newsUrl', 'liList', 'liChoose', 'selectObj', 'isSelectObj', 'msgList', 'petList'],
-  data () {
+  props: [
+    "newsUrl",
+    "liList",
+    "liChoose",
+    "selectObj",
+    "isSelectObj",
+    "msgList",
+    "petList",
+  ],
+  data() {
     return {
       liActiveItem: null,
       checked: {
         Type: [],
-        Age: []
+        Age: [],
       },
       selectComObj: {},
-      selectType: null
-    }
+      selectType: null,
+    };
   },
-  mounted () {
+  mounted() {
     // if (this.liChoose) this.liActiveItem = this.liChoose
   },
   watch: {
@@ -120,36 +156,35 @@ export default {
     // }
   },
   methods: {
-    liActive (item) {
-      this.liActiveItem = item
-      this.$emit('liActive', item)
+    liActive(item) {
+      this.liActiveItem = item;
+      this.$emit("liActive", item);
     },
-    selectChange (item) {
-      this.selectComObj[this.selectType] = item
+    selectChange(item) {
+      this.selectComObj[this.selectType] = item;
 
       this.$router.push({
         path: `/${this.$route.name}`,
-        query: { obj: JSON.stringify(this.selectComObj) }
-      })
+        query: { obj: JSON.stringify(this.selectComObj) },
+      });
     },
-    selectClick (key) {
-      this.selectType = key
+    selectClick(key) {
+      this.selectType = key;
     },
-    handleCheckedChange () {
-    },
-    msgClick (item) {
+    handleCheckedChange() {},
+    msgClick(item) {
       this.$router.push({
-        path: '/news/content/' + item.uid,
-      })
+        path: "/news/content/" + item.uid,
+      });
     },
-    petClick (item) {
+    petClick(item) {
       this.$router.push({
-        path: '/about',
-        query: { oid: item.oid }
-      })
-    }
-  }
-}
+        path: "/about",
+        query: { oid: item.oid },
+      });
+    },
+  },
+};
 </script>
 <style scoped lang="less">
 .aside {
@@ -207,7 +242,6 @@ export default {
   .aside-filter {
     text-align: left;
 
-
     ul li:not(.interstate) {
       border-radius: 2px;
       display: block;
@@ -229,7 +263,6 @@ export default {
   }
 
   .aside-select {
-
     .selectObj-list {
       h3 {
         margin: 10px 0;
@@ -238,7 +271,6 @@ export default {
   }
 
   .aside-msg {
-
     .aside-msg-item {
       cursor: pointer;
       padding: 9px 10px;
@@ -248,7 +280,6 @@ export default {
       overflow-wrap: anywhere;
 
       img {
-
         width: 100%;
         height: 160px;
         margin-bottom: 5px;
@@ -280,12 +311,15 @@ export default {
         color: var(--txt_color);
         box-shadow: 0 0 2px 1px var(--txt_color);
       }
-
     }
   }
 }
 
 @media screen and (max-width: 800px) {
+  .tall {
+    text-align: center;
+    width: 98% !important;
+  }
   .aside {
     max-width: 100%;
     margin-right: 0;
@@ -308,8 +342,6 @@ export default {
           margin-right: 2%;
           font-size: 14px;
         }
-
-
       }
     }
 
@@ -329,10 +361,7 @@ export default {
           padding: 5px 5px !important;
           display: inline-block !important;
           width: 44%;
-
-
         }
-
       }
     }
   }
