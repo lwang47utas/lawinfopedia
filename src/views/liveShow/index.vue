@@ -194,7 +194,8 @@ export default {
     readFn(item) {
       // console.log(item.uid,1222222222222222222222222222222222222)
       this.$router.push({
-        path: `/answers/legal-issue/${this.$route.params.issue}/${item.uid}`,
+        path: `/answers/legal-issue/${item.label}/${item.uid}`,
+        //   path: `/answers/legal-issue/${item.label}/${this.$route.params.issue}/${item.uid}`,
       });
     },
     // 跳转类型
@@ -294,7 +295,8 @@ export default {
 
     .qaList {
       .qa-item {
-        width: 100%;
+        width: 48%;
+        float: left;
         display: flex;
         margin: 30px 0;
         text-align: left;
@@ -321,6 +323,9 @@ export default {
           color: #666666;
           margin-top: 10px;
         }
+      }
+      .qa-item:nth-of-type(even) {
+        margin-left: 2%;
       }
     }
   }
@@ -476,6 +481,13 @@ export default {
     padding: 40px 15px;
   }
   @media screen and (max-width: 800px) {
+    .typeList .qaList .qa-item {
+      width: 100%;
+      float: none;
+    }
+    .typeList .qaList .qa-item:nth-of-type(even) {
+      margin-left: 0%;
+    }
     flex-direction: column-reverse;
     .typeList .qaList .qa-item img[data-v-4514bbe6] {
       width: 140px;

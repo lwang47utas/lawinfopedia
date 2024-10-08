@@ -2,44 +2,54 @@
   <div id="newsContent">
     <div class="center">
       <div class="contentTxt">
-<!--        <div class="title">-->
-<!--          {{ newMessage?.title }}-->
-<!--        </div>-->
-<!--     -->
-<!--        &lt;!&ndash; <div class="summary" v-if="newMessage.summary">-->
-<!--        摘要-->
-<!--      </div> &ndash;&gt;-->
-<!--        <div-->
-<!--          class="lianjie"-->
-<!--        >-->
-<!--          {{ newMessage?.overview }}-->
-<!--        </div>-->
-<!--        <div-->
-<!--          class="vedio"-->
-<!--        >-->
-<!--          <img :src="newMessage?.img" alt="" srcset="">-->
-<!--        </div>-->
-        <div
-          class="sconcent"
-          v-html="newMessage?.text"
-        >
-          <!--            {{ newMessage.text }}-->
+        <!--        <div class="title">-->
+        <!--          {{ newMessage?.title }}-->
+        <!--        </div>-->
+        <!--     -->
+        <!--        &lt;!&ndash; <div class="summary" v-if="newMessage.summary">-->
+        <!--        摘要-->
+        <!--      </div> &ndash;&gt;-->
+        <!--        <div-->
+        <!--          class="lianjie"-->
+        <!--        >-->
+        <!--          {{ newMessage?.overview }}-->
+        <!--        </div>-->
+        <!--        <div-->
+        <!--          class="vedio"-->
+        <!--        >-->
+        <!--          <img :src="newMessage?.img" alt="" srcset="">-->
+        <!--        </div>-->
+        <div class="simg"><img :src="newMessage.img" alt="" /></div>
+        <div class="sconcent" v-html="newMessage?.text" />
+        <!--            {{ newMessage.text }}-->
+      </div>
+      <div class="typeList">
+        <div class="typeList-name">Other Lawyer On {{ Iisue }}</div>
+        <div class="qaList">
+          <div
+            v-for="(item, index) in answerList"
+            :key="index"
+            class="qa-item"
+            @click="readFn(item)"
+          >
+            <img :src="item.img" alt="" />
+            <div>
+              <div class="qa-title mle">{{ item.title }}</div>
+              <div class="qa-overview mle">{{ item.overview }}</div>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-
-import { getIdPetArticle } from '@/api/qa.js'
+import { getIdPetArticle, getSameType } from "@/api/qa.js";
 
 export default {
-
-  name: 'newsContent',
-  data () {
+  name: "newsContent",
+  data() {
     return {
       newsId: null,
       newMessage: {},
@@ -47,34 +57,47 @@ export default {
       petList: [
         {},
         {
-          image: '',
-          type: '功能上线',
-          date: '2022-06-28',
-          title: '集中式光伏发电功率预测图层正式上线',
+          image: "",
+          type: "功能上线",
+          date: "2022-06-28",
+          title: "集中式光伏发电功率预测图层正式上线",
           introduce:
-            '弘象科技正式推出面向集中式光伏的全国高时空分辨让商业掌控天气，基于气象大数据平台和精准气象预报技术，为能源、应急、特种行业等降低天气因素带来的风险、提高运营管理效率，提供精细化、可定制的气象服务产品。',
-          model: ['太阳能', '天气与环境'],
-          url: '/news/content'
-        }
+            "弘象科技正式推出面向集中式光伏的全国高时空分辨让商业掌控天气，基于气象大数据平台和精准气象预报技术，为能源、应急、特种行业等降低天气因素带来的风险、提高运营管理效率，提供精细化、可定制的气象服务产品。",
+          model: ["太阳能", "天气与环境"],
+          url: "/news/content",
+        },
       ],
-      mouseindex: null
-    }
+      mouseindex: null,
+      answerList: [],
+      Iisue: "",
+    };
   },
-  async mounted () {
-    this.newsId = this.$route.params.id
-    this.getPetArticleFn()
+  async mounted() {
+    this.newsId = this.$route.params.id;
+    this.getPetArticleFn();
   },
   methods: {
-    getPetArticleFn () {
-      getIdPetArticle({ id: this.$route.params.id, type: 'lawyer' }
-      ).then(res => {
-        // console.log(res)
-        this.newMessage = res.data
-      })
-    }
-
-  }
-}
+    readFn(item) {
+      this.$router.push({
+        path: `/answers/legal-issue/${item.label}/${item.uid}`,
+      });
+    },
+    getPetArticleFn() {
+      this.Iisue = this.$route.params.issue;
+      getIdPetArticle({ id: this.$route.params.id, type: "lawyer" }).then(
+        (res) => {
+          // console.log(res)
+          this.newMessage = res.data;
+        }
+      );
+      getSameType({ label: this.$route.params.issue }).then((res) => {
+        // console.log(this.$route.params);
+        console.log(res);
+        this.answerList = res.data;
+      });
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -111,7 +134,6 @@ export default {
     }
 
     .title {
-
       line-height: 60px;
       font-size: 44px;
       font-weight: 500;
@@ -154,6 +176,14 @@ export default {
         margin-bottom: 32px;
       }
 
+      .simg {
+        // width: 100%;
+        // height: 100%;
+        > img {
+          // width: 100%;
+          //  height: 100%;
+        }
+      }
       .spicture {
         display: flex;
         justify-content: center;
@@ -253,8 +283,8 @@ export default {
       line-height: 1.5;
       font-size: 18px;
 
-      p:not([class*=c-]) {
-        letter-spacing: -.014em;
+      p:not([class*="c-"]) {
+        letter-spacing: -0.014em;
         margin-bottom: 1.3em;
         margin-top: 1.3em;
       }
@@ -268,16 +298,85 @@ export default {
           }
         }
       }
+    }
+  }
+  .typeList {
+    margin: 20px 0;
 
+    width: 100%;
+    .typeList-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .typeList-lists {
+      font-size: 18px;
+      color: var(--txt_color);
+      cursor: pointer;
+
+      div {
+        &:hover {
+          text-decoration: underline solid var(--txt_color);
+        }
+      }
+
+      .typeList-lists-more {
+        font-weight: bold;
+        font-size: 22px;
+      }
+    }
+
+    .qaList {
+      .qa-item {
+        width: 48%;
+        float: left;
+        display: flex;
+        margin: 30px 0;
+        text-align: left;
+        cursor: pointer;
+
+        &:hover .qa-title {
+          text-decoration: underline 1px var(--txt_color);
+        }
+
+        img {
+          width: 115px;
+          height: 145px;
+          border-radius: 8px;
+          margin-right: 20px;
+        }
+
+        .qa-title {
+          font-size: 22px;
+          color: var(--txt_color);
+        }
+
+        .qa-overview {
+          font-size: 16px;
+          color: #666666;
+          margin-top: 10px;
+        }
+      }
+      .qa-item:nth-of-type(even) {
+        margin-left: 2%;
+      }
     }
   }
 }
-
 </style>
 <style lang="less">
 @media screen and (max-width: 1000px) {
+  .typeList .qaList .qa-item {
+    width: 100%;
+    float: none;
+  }
+  .typeList .qaList .qa-item:nth-of-type(even) {
+    margin-left: 0%;
+  }
   #newsContent {
-    flex-direction:  column-reverse;
+    flex-direction: column-reverse;
     //padding: 40px 15px;
     //img{
     //  w
@@ -287,21 +386,21 @@ export default {
       line-height: 24px;
       margin: 15px 0;
     }
-    h2{
+    h2 {
       font-size: 18px;
       margin: 10px 0;
     }
-    p{
+    p {
       font-size: 16px;
       line-height: 20px;
     }
-    .el-breadcrumb{
+    .el-breadcrumb {
       font-size: 16px;
       //line-height: 1.4;
     }
-    .center{
-      .contentTxt{
-        .title{
+    .center {
+      .contentTxt {
+        .title {
           font-size: 24px;
           line-height: 30px;
         }
@@ -317,4 +416,21 @@ export default {
     }
   }
 }
+.typeList .qaList .qa-item img[data-v-4514bbe6] {
+  width: 140px;
+}
+.goToLink {
+  span {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+.typeList1 {
+  grid-template-columns: 1fr 1fr !important;
+}
+
+//.grid-four{
+//  grid-template-columns: 1fr 1fr !important;
+//}
 </style>

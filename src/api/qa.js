@@ -1,63 +1,72 @@
-
 // 公共接口
-import service from '@/libs/request'
+import service from "@/libs/request";
 
 /**
  * 获取案件和地区类型
  */
-export function getLawyerArticleType (params) {
+export function getLawyerArticleType(params) {
   return service({
-    url: '/web/articleJson/getAllLawyerArticleType',
+    url: "/web/articleJson/getAllLawyerArticleType",
     params,
-    method: 'get'
-  })
+    method: "get",
+  });
 }
 /**
  * 获取案件或地区类型列表
  */
-export function getLegalIssuesAndStates (params) {
+export function getLegalIssuesAndStates(params) {
   return service({
-    url: '/web/articleJson/getLegalIssuesAndStates',
+    url: "/web/articleJson/getLegalIssuesAndStates",
     params,
-    method: 'get'
-  })
+    method: "get",
+  });
 }
 /**
  * 根据法律查所有地区，根据地区查所有法律
  */
-export function getLawyerState (params) {
+export function getLawyerState(params) {
   return service({
-    url: '/web/articleJson/getLawyerState',
+    url: "/web/articleJson/getLawyerState",
     params,
-    method: 'get'
-  })
+    method: "get",
+  });
 }
 /**
  * 根据法律查所有地区，根据地区查所有法律
  */
-export function getIdPetArticle (params) {
+export function getIdPetArticle(params) {
   return service({
-    url: '/web/articleJson/getIdPetArticle',
+    url: "/web/articleJson/getIdPetArticle",
     params,
-    method: 'get'
-  })
+    method: "get",
+  });
 }
 /**
  * 最近问答5篇
  */
-export function getLawyerRecommend (params) {
+export function getLawyerRecommend(params) {
   return service({
-    url: '/web/articleJson/getLawyerRecommend',
+    url: "/web/articleJson/getLawyerRecommend",
     params,
-    method: 'get'
-  })
+    method: "get",
+  });
 }
 /**
  * 最近回答的和常见问题
  */
-export function getRC () {
+export function getRC() {
   return service({
-    url: '/web/articleJson/getRC',
-    method: 'get'
-  })
+    url: "/web/articleJson/getRC",
+    method: "get",
+  });
+}
+/**
+ * 相同类型案件推荐
+ */
+export function getSameType(params) {
+  return service({
+    url: "/web/articleJson/getSameType",
+    params,
+    method: "get",
+  });
 }
