@@ -18,6 +18,14 @@ import './assets/css/base.css'
 import './assets/css/common.css'
 import './assets/css/common.less'
 import './assets/icon/index'
+import * as VueGoogleMaps from 'vue2-google-maps'
+Vue.config.productionTip = false
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyDlu6RhpVUknJhTPyj0rvImxF29ew25kSg', // 此处填入谷歌地图申请的key
+    libraries: 'places'
+  }
+})
 
 Vue.use(ElementUI, { locale })
 

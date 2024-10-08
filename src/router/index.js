@@ -5,7 +5,7 @@ import serviceRouter from "./modules/cat";
 import newMessageRouter from "./modules/newMessage";
 import aboutRouter from "./modules/about";
 import helpListRouter from "./modules/helpList";
-
+import mapListRouter from "./modules/map";
 Vue.use(VueRouter);
 
 const routes = [
@@ -25,6 +25,7 @@ const routes = [
       ...newMessageRouter,
       aboutRouter,
       ...helpListRouter,
+      ...mapListRouter,
       {
         path: "/search",
         name: "search",

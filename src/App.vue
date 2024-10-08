@@ -1,15 +1,15 @@
 <template>
-  <div id="app" >
+  <div id="app">
     <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  mounted () {
+  mounted() {
     // this.$i18n.locale = 'es'
-  }
-}
+  },
+};
 </script>
 
 <style lang="less">
@@ -29,6 +29,7 @@ export default {
   a {
     font-weight: bold;
     color: #2c3e50;
+    background: transparent;
 
     &.router-link-exact-active {
       color: #42b983;

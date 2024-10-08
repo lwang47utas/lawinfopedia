@@ -1,21 +1,29 @@
 <template>
   <div id="showList">
-    <message-aside :newsUrl="newsUrl" :msg-list="msgList"
-                   :isSelectObj="isSelectObj" @liActive="liActiveFn" @selectChange="selectChangeFn"></message-aside>
+    <message-aside
+      :newsUrl="newsUrl"
+      :msg-list="msgList"
+      :isSelectObj="isSelectObj"
+      @liActive="liActiveFn"
+      @selectChange="selectChangeFn"
+    ></message-aside>
     <div class="livePlay">
       <div class="content">
-
         <el-breadcrumb>
-          <el-breadcrumb-item :to="{ path: `/answers` }">Legal Q & A</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path:`/answers/${isTypeObj.type}`} ">
+          <el-breadcrumb-item :to="{ path: `/answers` }"
+            >Legal Q & A</el-breadcrumb-item
+          >
+          <el-breadcrumb-item :to="{ path: `/answers/${isTypeObj.type}` }">
             {{ isTypeObj.name }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item v-if="$route.params.issue"
-                              :to="{ path: `/answers/${isTypeObj.type}/${$route.params.issue}`}">
+          <el-breadcrumb-item
+            v-if="$route.params.issue"
+            :to="{ path: `/answers/${isTypeObj.type}/${$route.params.issue}` }"
+          >
             {{ $route.params.issue }}
           </el-breadcrumb-item>
 
-<!--          <el-breadcrumb-item v-if="$route.params.id">{{ $route.params.id }}</el-breadcrumb-item>-->
+          <!--          <el-breadcrumb-item v-if="$route.params.id">{{ $route.params.id }}</el-breadcrumb-item>-->
         </el-breadcrumb>
         <div v-if="!$route.params.issue">
           <div class="livePlay-title">
@@ -23,11 +31,15 @@
             <div>{{ isTypeObj.name }}</div>
           </div>
           <div class="chooseList grid-three">
-            <router-link v-for="(item,index) in typeList" :to="{path:`${$route.fullPath}/${item}`}" :key="index"
-                         class="sle" tag="div">{{ item }}
+            <router-link
+              v-for="(item, index) in typeList"
+              :to="{ path: `${$route.fullPath}/${item}` }"
+              :key="index"
+              class="sle"
+              tag="div"
+              >{{ item }}
             </router-link>
           </div>
-
         </div>
         <div v-else-if="$route.params.issue && !$route.params.id">
           <div class="livePlay-title">
@@ -35,71 +47,83 @@
             <div>{{ $route.params.issue }}</div>
           </div>
           <div class="chooseList grid-four">
-            <div v-for="(item,index) in type2List" :key="index"
-                 class="sle" :class="type2Choose===item?'isChoose':''" @click="type2ChooseFn(item)">{{ item }}
+            <div
+              v-for="(item, index) in type2List"
+              :key="index"
+              class="sle"
+              :class="type2Choose === item ? 'isChoose' : ''"
+              @click="type2ChooseFn(item)"
+            >
+              {{ item }}
             </div>
           </div>
-          <qa-list :type="type2Choose" :showPage="true" @readFn="readFn"></qa-list>
+          <qa-list
+            :type="type2Choose"
+            :showPage="true"
+            @readFn="readFn"
+          ></qa-list>
         </div>
         <div v-else>
           <answerContent></answerContent>
         </div>
       </div>
     </div>
-
   </div>
-
 </template>
 
 <script>
-import { getPetArticleList } from '@/libs/utils'
+import { getPetArticleList } from "@/libs/utils";
 
-import messageAside from 'comps/messageAside/messageAside.vue'
+import messageAside from "comps/messageAside/messageAside.vue";
 
-import { getType, queryPet } from '@/api/index'
-import { getLawyerArticleType, getLegalIssuesAndStates, getLawyerState } from '@/api/qa.js'
-import QaList from './qaList.vue'
-import answerContent from './answerContent.vue'
+import { getType, queryPet } from "@/api/index";
+import {
+  getLawyerArticleType,
+  getLegalIssuesAndStates,
+  getLawyerState,
+} from "@/api/qa.js";
+import QaList from "./qaList.vue";
+import answerContent from "./answerContent.vue";
 
 export default {
   components: {
     QaList,
     answerContent,
-    messageAside
+    messageAside,
   },
-  data () {
+  data() {
     return {
-      num: '',
+      num: "",
       // 每个菜单对应的内容
       typeObj: {
         legalIssues: {
-          name: 'By legal issue',
-          route: '/answers/legal-issue',
-          type: 'legal-issue',
-          getType: 'states'
+          name: "By legal issue",
+          route: "/answers/legal-issue",
+          type: "legal-issue",
+          getType: "states",
         },
         states: {
-          name: 'By State',
-          route: '/answers/state',
-          type: 'state',
-          getType: 'legalIssues'
-        }
+          name: "By State",
+          route: "/answers/state",
+          type: "state",
+          getType: "legalIssues",
+        },
       },
       isTypeObj: {}, // 当前选中的菜单
 
-      typeSelect: '',
+      typeSelect: "",
       typeList: null,
       type2List: null,
-      type2Choose: '',
+      type2Choose: "",
       msgList: [
         {
-          img: require('../../assets/image/about/bg.png'),
-          title: '10 Most Popular Dog Breeds in 2024'
+          img: require("../../assets/image/about/bg.png"),
+          title: "10 Most Popular Dog Breeds in 2024",
         },
         {
-          img: require('../../assets/image/about/bg.png'),
-          title: '10 Most Popular Dog Breeds in 2024'
-        }
+          img: require("../../assets/image/about/bg.png"),
+          title: "10 Most Popular Dog Breeds in 2024",
+        },
       ],
       selectObj: {},
       isSelectObj: {},
@@ -107,90 +131,93 @@ export default {
       pageNum: 1,
       pageSize: 12,
       total: 0,
-      search: '',
-      newsUrl: 'liveShow'
-    }
+      search: "",
+      newsUrl: "liveShow",
+    };
   },
   watch: {
-    $route (to, from) {
-      this.init()
-    }
+    $route(to, from) {
+      this.init();
+    },
   },
-  async mounted () {
-    this.msgList = await getPetArticleList()
-    this.init()
+  async mounted() {
+    this.msgList = await getPetArticleList();
+    this.init();
   },
   methods: {
-    init () {
-      this.newsUrl = this.$route.name
-      this.isTypeObj = this.typeObj[this.newsUrl]
-      this.$route.params.issue ? this.getLawyerStateFn() : this.getTypeFn()
+    init() {
+      this.newsUrl = this.$route.name;
+      this.isTypeObj = this.typeObj[this.newsUrl];
+      this.$route.params.issue ? this.getLawyerStateFn() : this.getTypeFn();
     },
-    getTypeFn () {
+    getTypeFn() {
       // console.log(this.newsUrl)
-      getLawyerArticleType({ msg: this.newsUrl }).then(res => {
-        this.typeList = res.data[this.newsUrl]
-      })
+      getLawyerArticleType({ msg: this.newsUrl }).then((res) => {
+        this.typeList = res.data[this.newsUrl];
+      });
     },
-    getLawyerStateFn () {
+    getLawyerStateFn() {
       getLawyerState({
         msg: this.$route.params.issue,
-        type: this.isTypeObj.getType
-      }).then(res => {
-        this.type2List = res.data.msg
-        this.type2Choose = this.type2List[0]
-      })
+        type: this.isTypeObj.getType,
+      }).then((res) => {
+        this.type2List = res.data.msg;
+        this.type2Choose = this.type2List[0];
+      });
     },
-    getLegalIssuesAndStatesFn () {
-      const obj = {}
-      obj[this.newsUrl] = ''
+    getLegalIssuesAndStatesFn() {
+      const obj = {};
+      obj[this.newsUrl] = "";
       getLegalIssuesAndStates({
         pageNo: 1,
         pageSize: 12,
-        ...obj
-      }).then(res => {
-
-      })
+        ...obj,
+      }).then((res) => {});
     },
-    selectChangeFn (item) {
-      this.pageNum = 1
-      this.showList = []
-      this.isSelectObj = item
-      this.getPetList(item)
+    selectChangeFn(item) {
+      this.pageNum = 1;
+      this.showList = [];
+      this.isSelectObj = item;
+      this.getPetList(item);
     },
     // 获取宠物列表
-    getPetList (item) {
+    getPetList(item) {
       queryPet({
         ...item,
         type: this.newsUrl,
         page: this.pageNum,
-        pageSize: 12
-      }).then(res => {
-        this.num = res.data.count
-        this.showList = res.data.petList
-      })
+        pageSize: 12,
+      }).then((res) => {
+        this.num = res.data.count;
+        this.showList = res.data.petList;
+      });
     },
-    liActiveFn (item) {
-      console.log(item)
+    liActiveFn(item) {
+      console.log(item);
     },
     // 切换州或者法律选择
-    type2ChooseFn (item) {
-      this.type2Choose = item
+    type2ChooseFn(item) {
+      this.type2Choose = item;
     },
-    activeLive (index) {
-      this.activeLiveIndex = index
-      this.activeLiveFn = this.activities[index]
-      this.itemTransform = -751 * index
+    activeLive(index) {
+      this.activeLiveIndex = index;
+      this.activeLiveFn = this.activities[index];
+      this.itemTransform = -751 * index;
       // this.activeLiveFn.status = this.statusList[this.activities[index].status]
     },
     // 阅读文章
-    readFn (item) {
-      console.log(`/answers/${this.isTypeObj.type}/${this.$route.params.issue}/${item.uid}`)
-      this.$router.push({ path: `/answers/${this.isTypeObj.type}/${this.$route.params.issue}/${encodeURI(item.uid)}` })
-    }
-
-  }
-}
+    readFn(item) {
+      console.log(
+        `/answers/${this.isTypeObj.type}/${this.$route.params.issue}/${item.uid}`
+      );
+      this.$router.push({
+        path: `/answers/${this.isTypeObj.type}/${
+          this.$route.params.issue
+        }/${encodeURI(item.uid)}`,
+      });
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -233,7 +260,6 @@ export default {
         text-align: left;
         box-shadow: 0px 3px 15px 1px rgba(0, 0, 0, 0.08);
         overflow: hidden;
-
       }
     }
   }
@@ -262,7 +288,6 @@ export default {
 
       &:hover {
         text-decoration: none solid var(--txt_color);
-
       }
     }
 
@@ -296,7 +321,6 @@ export default {
   }
 
   .livePlay-lists {
-
     .livePlay-list {
       width: 100%;
       box-sizing: border-box;
@@ -371,7 +395,6 @@ export default {
 
               &:nth-child(1) {
                 margin-right: 10px;
-
               }
             }
           }
@@ -390,7 +413,6 @@ export default {
       text-align: right;
       padding: 15px;
       font-size: 20px;
-
     }
   }
 }
@@ -403,17 +425,14 @@ export default {
     flex-direction: column-reverse;
     .livePlay-title {
       margin: 20px 0;
-
     }
-    .center .title{
+    .center .title {
       font-size: 24px;
     }
-
 
     .grid-three {
       grid-gap: 6px;
       grid-template-columns: 1fr 1fr;
-
     }
   }
 }
@@ -436,7 +455,7 @@ export default {
   height: 100%;
   border-left: 2px dashed #3269ff;
 }
-.el-breadcrumb{
+.el-breadcrumb {
   font-size: 16px !important;
   line-height: 1.4;
 }

@@ -247,6 +247,7 @@
                 <div class="qa-select-title">
                   Find information about your legal issue
                 </div>
+
                 <div class="qa-select-enter">Enter your legal issue here</div>
                 <div class="qa-select-item">
                   <!--              <el-select-->
@@ -266,7 +267,7 @@
                     v-model="qaValue"
                     placeholder="请输入内容"
                   ></el-input>
-                  <div class="select-search" @click="searchQaFn()">
+                  <div class="select-search gcse-search" @click="searchQaFn()">
                     {{ $t("index.header.search") }}
                   </div>
                 </div>
@@ -279,7 +280,7 @@
     </div>
   </div>
 </template>
-
+<script async src="https://cse.google.com/cse.js?cx=b255110edc44844bc"></script>
 <script>
 import { allList } from "./js/index.js";
 

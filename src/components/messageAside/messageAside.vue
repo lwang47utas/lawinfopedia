@@ -80,6 +80,12 @@
         <!--        </el-checkbox-group>-->
       </div>
     </div>
+    <div class="aside-msg aside-div">
+      <h1>Pro Bono & Offices</h1>
+      <div v-for="(item, index) in prolist" :key="index" class="pro-item">
+        <router-link :to="item.path" tag="span"> {{ item.name }} </router-link>
+      </div>
+    </div>
     <div class="aside-msg aside-div" v-if="msgList">
       <h1>{{ $t("aside.msg") }}</h1>
       <div
@@ -138,6 +144,53 @@ export default {
   ],
   data() {
     return {
+      prolist: [
+        {
+          title: "Pro Bono Offices",
+          path: "/Pro-Bono-Offices",
+          name: "Pro Bono Offices",
+        },
+        {
+          title: "Unemployment Offices",
+          path: "/Unemployment-Offices",
+          name: "Unemployment Offices",
+        },
+        {
+          title: "Employment Departments",
+          path: "/Employment-Departments",
+          name: "Employment Departments",
+        },
+        {
+          title: "Victim Assistance Centers",
+          path: "/Victim-Assistance-Centers",
+          name: "Victim Assistance Centers",
+        },
+        {
+          title: "Courts",
+          path: "/Courts",
+          name: "Courts",
+        },
+        {
+          title: "Bar Associations",
+          path: "/Bar-Associations",
+          name: "Bar Associations",
+        },
+        {
+          title: "District Attorney Offices",
+          path: "/District-Attorney-Offices",
+          name: "District Attorney Offices",
+        },
+        {
+          title: "Departments of Justice",
+          path: "/Departments-of-Justice",
+          name: "Departments of Justice",
+        },
+        {
+          title: "Attorney Generals",
+          path: "/Attorney-Generals",
+          name: "Attorney Generals",
+        },
+      ],
       liActiveItem: null,
       checked: {
         Type: [],
@@ -312,6 +365,10 @@ export default {
         box-shadow: 0 0 2px 1px var(--txt_color);
       }
     }
+  }
+  .pro-item {
+    margin-bottom: 10px;
+    cursor: pointer;
   }
 }
 
